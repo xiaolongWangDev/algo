@@ -1,6 +1,6 @@
 package linkedlist;
 
-import java.util.Random;
+import java.util.*;
 
 public class LinkedListUtils {
 
@@ -9,10 +9,27 @@ public class LinkedListUtils {
         Node next;
     }
 
+    public static class RandNode {
+        String name;
+        int value;
+        RandNode next;
+        RandNode rand;
+    }
+
     public static void print(Node head) {
         Node current = head;
         while (current != null) {
             System.out.print(current.value);
+            System.out.print(" ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public static void printRand(RandNode head) {
+        RandNode current = head;
+        while (current != null) {
+            System.out.printf("(v: %d, r: %s)", current.value, current.rand == null ? null : current.rand.name);
             System.out.print(" ");
             current = current.next;
         }
@@ -98,6 +115,24 @@ public class LinkedListUtils {
         Random random = new Random();
         int[] temp = random.ints(size, min, max).toArray();
         return generateTestData(temp);
+    }
+
+    public static RandNode generateTestDataRandNode(int size, int min, int max) {
+        Random random = new Random();
+        int[] temp = random.ints(size, min, max).toArray();
+        List<RandNode> allNodes = new ArrayList<>();
+        for (int i = 0; i < temp.length; i++) {
+            RandNode newNode = new RandNode();
+            newNode.name = "n_" + (i + 1);
+            newNode.value = temp[i];
+            allNodes.add(newNode);
+        }
+        for (int i = 0; i < allNodes.size() - 1; i++) {
+            allNodes.get(i).next = allNodes.get(i + 1);
+            int index = random.nextInt(allNodes.size() + 1);
+            allNodes.get(i).rand = index == allNodes.size() ? null : allNodes.get(index);
+        }
+        return allNodes.get(0);
     }
 
 }
