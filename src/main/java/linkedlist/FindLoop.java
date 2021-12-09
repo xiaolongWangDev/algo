@@ -19,15 +19,15 @@ public class FindLoop {
         }
     }
 
-    public int findEnterPoint(Node input) {
-        if(input == null) return -1;
+    public Node findEnterPoint(Node input) {
+        if(input == null) return null;
         Node slow = input;
         Node fast = input;
         Node firstMeetPoint;
         while (true) {
-            if (slow.next == null) return -1;
+            if (slow.next == null) return null;
             slow = slow.next;
-            if (fast.next == null || fast.next.next == null) return -1;
+            if (fast.next == null || fast.next.next == null) return null;
             fast = fast.next.next;
             if (slow == fast) {
                 firstMeetPoint = slow;
@@ -36,21 +36,18 @@ public class FindLoop {
         }
         Node one = input;
         Node another = firstMeetPoint;
-        int count = 0;
         while(one != another) {
             one = one.next;
             another = another.next;
-            count ++;
         }
-
-        return count;
+        return one;
     }
 
     public static void main(String[] args) {
         int size = 1000000;
-        List<Object> testDataBundle = generateTestDataWithLoop(size, 0, 10);
-        Node testDataWithLoop = (Node) testDataBundle.get(0);
-        int loopIndex = (int) testDataBundle.get(1);
+        List<Node> testDataBundle = generateTestDataWithLoop(size, 0, 10);
+        Node testDataWithLoop = testDataBundle.get(0);
+        Node loopIndex = testDataBundle.get(1);
         Node testDataNoLoop = generateTestData(size, 0, 10);
 //        printFirstN(testData, size);
         FindLoop algo = new FindLoop();

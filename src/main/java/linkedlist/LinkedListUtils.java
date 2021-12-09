@@ -128,7 +128,7 @@ public class LinkedListUtils {
         return generateTestData(temp);
     }
 
-    public static List<Object> generateTestDataWithLoop(int size, int min, int max) {
+    public static List<Node> generateTestDataWithLoop(int size, int min, int max) {
         Node head = generateTestData(size, min, max);
         Node cur = head;
         Node randomNode = null;
@@ -146,7 +146,7 @@ public class LinkedListUtils {
         }
         assert tail != null;
         tail.next = randomNode;
-        return List.of(head, randomIndex);
+        return List.of(head, randomNode);
     }
 
     public static RandNode generateTestDataRandNode(int size, int min, int max) {
