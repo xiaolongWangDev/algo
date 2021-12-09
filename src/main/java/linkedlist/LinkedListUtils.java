@@ -157,10 +157,18 @@ public class LinkedListUtils {
         return List.of(head, randomNode);
     }
 
+    public static Node nodeAt(Node head, int index) {
+        Node cur = head;
+        while (cur != null && index-- != 0) {
+            cur = cur.next;
+        }
+        return cur;
+    }
+
     public static List<Node> generateTestDataForTheCommonNodeProblem(int firstSize, int secondSize, int commonSize, int min, int max, boolean hasLoop, boolean sameLoopEntry) {
         Random random = new Random();
         Node commonListHead;
-        if(commonSize == 0) {
+        if (commonSize == 0) {
             commonListHead = null;
         } else {
             int[] commonArray = random.ints(commonSize, min, max).toArray();
@@ -190,7 +198,7 @@ public class LinkedListUtils {
             while (cur.next != null) {
                 cur = cur.next;
             }
-            cur.next = hasLoop && sameLoopEntry ? commonListHead : randomNodeFromLoop(commonListHead, commonSize);
+            cur.next = (hasLoop && !sameLoopEntry) ? randomNodeFromLoop(commonListHead, commonSize) : commonListHead;
         }
         return listHead;
     }
