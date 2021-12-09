@@ -26,6 +26,17 @@ public class LinkedListUtils {
         System.out.println();
     }
 
+    public static void printFirstN(Node head, int n) {
+        Node current = head;
+        int count = 0;
+        while (current != null && count < n) {
+            System.out.printf("(v: %d, c: %s, n: %s)", current.value, current, current.next == null ? null : current.next);
+            System.out.println();
+            current = current.next;
+            count++;
+        }
+    }
+
     public static void printRand(RandNode head) {
         RandNode current = head;
         while (current != null) {
@@ -115,6 +126,27 @@ public class LinkedListUtils {
         Random random = new Random();
         int[] temp = random.ints(size, min, max).toArray();
         return generateTestData(temp);
+    }
+
+    public static List<Object> generateTestDataWithLoop(int size, int min, int max) {
+        Node head = generateTestData(size, min, max);
+        Node cur = head;
+        Node randomNode = null;
+        Node tail = null;
+        Random random = new Random();
+        int randomIndex = random.nextInt(size);
+        for (int i = 0; i < size; i++) {
+            if (i == randomIndex) {
+                randomNode = cur;
+            }
+            if (i == size - 1) {
+                tail = cur;
+            }
+            cur = cur.next;
+        }
+        assert tail != null;
+        tail.next = randomNode;
+        return List.of(head, randomIndex);
     }
 
     public static RandNode generateTestDataRandNode(int size, int min, int max) {
