@@ -168,13 +168,23 @@ public class TreeIteration {
         }
     }
 
+    public void breadthFirst(Node root, List<Node> resultCollector) {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            resultCollector.add(cur);
+            if (cur.left != null) queue.add(cur.left);
+            if (cur.right != null) queue.add(cur.right);
+        }
+    }
 
     public static void main(String[] args) {
         int min = 0;
         int max = 100;
         int height = 4;
         Node testDataRoot = testData(min, max, height);
-//        printTree(testDataRoot, height);
+        printTree(testDataRoot, height);
         TreeIteration treeIteration = new TreeIteration();
         List<Node> inOrder = new ArrayList<>();
         treeIteration.recursiveInOrder(testDataRoot, inOrder);
@@ -212,6 +222,10 @@ public class TreeIteration {
 //        printOrder(postOrder3);
         compareList(postOrder, postOrder2);
         compareList(postOrder, postOrder3);
+
+        List<Node> breadthFirstOrder = new ArrayList<>();
+        treeIteration.breadthFirst(testDataRoot, breadthFirstOrder);
+        printOrder(breadthFirstOrder);
     }
 
     private static void compareList(List<Node> target, List<Node> real) {

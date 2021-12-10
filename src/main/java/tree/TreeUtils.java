@@ -43,11 +43,37 @@ public class TreeUtils {
         fillPlaceholderChildren(node.right, height - 1);
     }
 
+    /**
+     * apply the given function to the nodes in pre-order
+     */
     public static void iterateAndApply(Node node, Consumer<Node> func) {
         if(node == null) return;
         func.accept(node);
         iterateAndApply(node.left, func);
         iterateAndApply(node.right, func);
+    }
+
+    /**
+     * find the width of the widest level of a tree.
+     * this is simpler than the algorithm provided in the video course
+     * https://www.bilibili.com/video/BV13g41157hK?p=6 the problem discussed starting at 1:50:27
+     */
+    public int widest(Node root) {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        List<Node> currentLevelNodes = new ArrayList<>();
+        int maxWidth = 0;
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            if (cur.left != null) currentLevelNodes.add(cur.left);
+            if (cur.right != null) currentLevelNodes.add(cur.right);
+            if(queue.isEmpty()) {
+                maxWidth = Math.max(maxWidth, currentLevelNodes.size());
+                queue.addAll(currentLevelNodes);
+                currentLevelNodes.clear();
+            }
+        }
+        return maxWidth;
     }
 
 
