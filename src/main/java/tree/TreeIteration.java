@@ -180,29 +180,12 @@ public class TreeIteration {
         }
     }
 
-    private static class BstChecker {
-        Integer prevValue;
-        boolean isBst = true;
-        public void check(Node node){
-            if(isBst && prevValue != null) {
-                isBst = prevValue < node.value;
-            }
-            prevValue = node.value;
-        }
-    }
-
-    public boolean isBst(Node root){
-        BstChecker checker = new BstChecker();
-        shortInOrder(root, checker::check);
-        return checker.isBst;
-    }
-
     public static void main(String[] args) {
         int min = 0;
         int max = 100;
         int height = 3;
         Node testDataRoot = testData(min, max, height);
-        printTree(testDataRoot, height);
+//        printTree(testDataRoot, height);
         TreeIteration treeIteration = new TreeIteration();
         List<Node> inOrder = new ArrayList<>();
         treeIteration.recursiveInOrder(testDataRoot, inOrder::add);
@@ -244,8 +227,6 @@ public class TreeIteration {
         List<Node> breadthFirstOrder = new ArrayList<>();
         treeIteration.breadthFirst(testDataRoot, breadthFirstOrder::add);
 //        printOrder(breadthFirstOrder);
-
-        System.out.println(treeIteration.isBst(testDataRoot));
     }
 
     private static void compareList(List<Node> target, List<Node> real) {
