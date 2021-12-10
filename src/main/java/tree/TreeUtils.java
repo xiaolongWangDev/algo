@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import static java.lang.Math.max;
 
@@ -40,6 +41,13 @@ public class TreeUtils {
             node.right = newNode;
         }
         fillPlaceholderChildren(node.right, height - 1);
+    }
+
+    public static void iterateAndApply(Node node, Consumer<Node> func) {
+        if(node == null) return;
+        func.accept(node);
+        iterateAndApply(node.left, func);
+        iterateAndApply(node.right, func);
     }
 
 
