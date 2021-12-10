@@ -83,7 +83,41 @@ public class TreeCheck extends TreeIteration {
         } else {
             return new BalanceInfo(1, true);
         }
+    }
 
+    private static class Dimension {
+        int height;
+        int width;
+
+        Dimension(int height, int width) {
+            this.height = height;
+            this.width = width;
+        }
+
+        @Override
+        public String toString() {
+            return "Dimension{" +
+                    "height=" + height +
+                    ", width=" + width +
+                    '}';
+        }
+    }
+
+    public Dimension getDimension(Node node) {
+        if (node == null) {
+            return new Dimension(0, 0);
+        }
+        Dimension leftDimension = getDimension(node.left);
+        Dimension rightDimension = getDimension(node.right);
+        int newHeight = Math.max(leftDimension.height, rightDimension.height) + 1;
+        int newWidth = leftDimension.width + rightDimension.width;
+        newWidth = newWidth == 0 ? 1 : newWidth;
+        return new Dimension(newHeight, newWidth);
+    }
+
+    public boolean isFull(Node root) {
+        Dimension dimension = getDimension(root);
+        return dimension.width == (int) Math.pow(2, dimension.height - 1);
     }
 
     public static void main(String[] args) {
@@ -97,6 +131,7 @@ public class TreeCheck extends TreeIteration {
         System.out.println(treeCheck.isBst(testDataRoot));
         System.out.println(treeCheck.isCbt(testDataRoot));
         System.out.println(treeCheck.isBalanced(testDataRoot));
+        System.out.println(treeCheck.isFull(testDataRoot));
 
 
     }
