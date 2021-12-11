@@ -76,7 +76,6 @@ public class TreeUtils {
         return maxWidth;
     }
 
-
     public static void printTree(Node root, int height) {
         root = clone(root);
         fillPlaceholderChildren(root, height);

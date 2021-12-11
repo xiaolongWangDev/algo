@@ -180,6 +180,38 @@ public class TreeIteration {
         }
     }
 
+    public static class NthNodeResult {
+        Node node;
+        int count;
+
+        public NthNodeResult(Node node, int count) {
+            this.node = node;
+            this.count = count;
+        }
+    }
+
+    /**
+     * this finds the nth node in the tree in in-order.
+     * it's more of a practice of using divide and conquer, so it might not be the optimal way of doing this
+     */
+    public NthNodeResult nthNodeInOrder(Node node, int n) {
+        if (node == null) {
+            return new NthNodeResult(null, 0);
+        }
+        NthNodeResult leftResult = nthNodeInOrder(node.left, n);
+        if (leftResult.node != null) {
+            return new NthNodeResult(leftResult.node, 0);
+        }
+        if (leftResult.count + 1 == n) {
+            return new NthNodeResult(node, 0);
+        }
+        NthNodeResult rightResult = nthNodeInOrder(node.right, n - leftResult.count - 1);
+        if (rightResult.node != null) {
+            return new NthNodeResult(rightResult.node, 0);
+        }
+        return new NthNodeResult(null, leftResult.count + 1 + rightResult.count);
+    }
+
     public static void main(String[] args) {
         int min = 0;
         int max = 100;
