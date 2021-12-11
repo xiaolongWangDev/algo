@@ -180,6 +180,7 @@ public class TreeIteration {
         }
     }
 
+    // some handy utils for others to use
     public static class NthNodeResult {
         Node node;
         int count;
@@ -188,6 +189,27 @@ public class TreeIteration {
             this.node = node;
             this.count = count;
         }
+    }
+
+    public Node getRandomNode(Node root) {
+        Random random = new Random();
+        int stopAt = 1 + random.nextInt(count(root));
+//        System.out.println(stopAt);
+        return nthNodeInOrder(root, stopAt).node;
+    }
+
+    private static class Counter {
+        int count;
+
+        public void add() {
+            count++;
+        }
+    }
+
+    private int count(Node root) {
+        Counter counter = new Counter();
+        shortInOrder(root, node -> counter.add());
+        return counter.count;
     }
 
     /**

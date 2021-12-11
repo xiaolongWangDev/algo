@@ -48,30 +48,8 @@ public class LowestCommonAncestor extends TreeIteration {
 //        System.out.println(nodeB.value);
 
         Node lca = algo.find(testDataRoot, nodeA, nodeB);
-        System.out.printf("Count ancestor for %s and %s is ", nodeA.value, nodeB.value);
+        System.out.printf("common ancestor for %s and %s is ", nodeA.value, nodeB.value);
         System.out.println(lca.value);
 
-    }
-
-    // some utils for testing
-    private static class Counter {
-        int count;
-
-        public void add() {
-            count++;
-        }
-    }
-
-    private int count(Node root) {
-        Counter counter = new Counter();
-        shortInOrder(root, node -> counter.add());
-        return counter.count;
-    }
-
-    private Node getRandomNode(Node root) {
-        Random random = new Random();
-        int stopAt = 1 + random.nextInt(count(root));
-//        System.out.println(stopAt);
-        return nthNodeInOrder(root, stopAt).node;
     }
 }

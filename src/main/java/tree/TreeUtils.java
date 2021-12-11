@@ -11,6 +11,8 @@ public class TreeUtils {
         int value;
         Node left;
         Node right;
+        /*not a standard tree node attribute, only used for ParentAwareTree algorithm */
+        Node parent;
     }
 
     public static int maxHeight(Node root) {
@@ -47,7 +49,7 @@ public class TreeUtils {
      * apply the given function to the nodes in pre-order
      */
     public static void iterateAndApply(Node node, Consumer<Node> func) {
-        if(node == null) return;
+        if (node == null) return;
         func.accept(node);
         iterateAndApply(node.left, func);
         iterateAndApply(node.right, func);
@@ -67,7 +69,7 @@ public class TreeUtils {
             Node cur = queue.poll();
             if (cur.left != null) currentLevelNodes.add(cur.left);
             if (cur.right != null) currentLevelNodes.add(cur.right);
-            if(queue.isEmpty()) {
+            if (queue.isEmpty()) {
                 maxWidth = Math.max(maxWidth, currentLevelNodes.size());
                 queue.addAll(currentLevelNodes);
                 currentLevelNodes.clear();
@@ -123,6 +125,7 @@ public class TreeUtils {
                 // 20% chance to not add a node
                 if (random.nextInt(10) > 1) {
                     Node newLeft = new Node();
+                    newLeft.parent = parentLevelNode;
                     newLeft.value = min + random.nextInt(max - min);
                     parentLevelNode.left = newLeft;
                     currentLevelNodes.add(newLeft);
@@ -132,6 +135,7 @@ public class TreeUtils {
                 // if no node has been added in this level and this is the last one, we will add it regardless
                 if ((i == parentLevelNodes.size() - 1 && noChildrenAdded) || random.nextInt(10) > 1) {
                     Node newRight = new Node();
+                    newRight.parent = parentLevelNode;
                     newRight.value = min + random.nextInt(max - min);
                     parentLevelNode.right = newRight;
                     currentLevelNodes.add(newRight);
