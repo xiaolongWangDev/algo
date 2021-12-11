@@ -33,7 +33,7 @@ public class TreeIteration {
 
 
     // non-recursive fashion, DFS based
-    private enum IterationOrder {
+    protected enum IterationOrder {
         PRE,
         POST,
         IN
