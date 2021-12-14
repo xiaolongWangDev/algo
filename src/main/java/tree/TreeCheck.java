@@ -2,7 +2,7 @@ package tree;
 
 import static tree.TreeUtils.*;
 
-public class TreeCheck extends TreeIteration {
+public class TreeCheck extends TreeTraversal {
 
     private static class BstChecker {
         Integer prevValue;

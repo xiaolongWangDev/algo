@@ -22,6 +22,7 @@ public class GraphUtils {
         }
         for (Link src : graph.links) {
             Link target = new Link();
+            target.id = src.id;
             target.weight = src.weight;
             target.from = nodeMapping.get(src.from);
             target.to = nodeMapping.get(src.to);
@@ -56,7 +57,7 @@ public class GraphUtils {
         return result;
     }
 
-    public static Graph getTestData(int nNodes, boolean directed, int minWeight, int maxWeight) {
+    public static Graph getTestData(int nNodes, boolean directed, int minWeight, int maxWeight, boolean loopFree, int sparseLevel) {
         Graph graph = new Graph();
         for (int i = 1; i <= nNodes; i++) {
             Node node = new Node();
@@ -68,10 +69,10 @@ public class GraphUtils {
 
         int linkId = 1;
         for (int i = 1; i <= nNodes; i++) {
-            for (int j = 1; j <= nNodes; j++) {
+            for (int j = loopFree ? i + 1 : i; j <= nNodes; j++) {
                 if (i != j) {
                     int weight = minWeight + random.nextInt(maxWeight - minWeight);
-                    if (random.nextInt(10) > 3) {
+                    if (random.nextInt(10) >= sparseLevel) {
                         if (directed) {
                             addLinkBetween(graph, weight, linkId++, i, j);
                         } else {

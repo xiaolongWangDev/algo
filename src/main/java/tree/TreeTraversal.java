@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 import static tree.TreeUtils.*;
 
-public class TreeIteration {
+public class TreeTraversal {
 
     private static final Queue<Way> ALL_WAYS = new ArrayDeque<>(List.of(Way.LEFT, Way.RIGHT));
 
@@ -240,46 +240,46 @@ public class TreeIteration {
         int height = 3;
         Node testDataRoot = testData(min, max, height);
 //        printTree(testDataRoot, height);
-        TreeIteration treeIteration = new TreeIteration();
+        TreeTraversal treeTraversal = new TreeTraversal();
         List<Node> inOrder = new ArrayList<>();
-        treeIteration.recursiveInOrder(testDataRoot, inOrder::add);
+        treeTraversal.recursiveInOrder(testDataRoot, inOrder::add);
 //        printOrder(inOrder);
         List<Node> inOrder2 = new ArrayList<>();
-        treeIteration.backtrackBased(testDataRoot, inOrder2::add, IterationOrder.IN);
+        treeTraversal.backtrackBased(testDataRoot, inOrder2::add, IterationOrder.IN);
 //        printOrder(inOrder2);
         List<Node> inOrder3 = new ArrayList<>();
-        treeIteration.shortInOrder(testDataRoot, inOrder3::add);
+        treeTraversal.shortInOrder(testDataRoot, inOrder3::add);
 //        printOrder(inOrder3);
         compareList(inOrder, inOrder2);
         compareList(inOrder, inOrder3);
 
         List<Node> preOrder = new ArrayList<>();
-        treeIteration.recursivePreOrder(testDataRoot, preOrder::add);
+        treeTraversal.recursivePreOrder(testDataRoot, preOrder::add);
 //        printOrder(preOrder);
         List<Node> preOrder2 = new ArrayList<>();
-        treeIteration.backtrackBased(testDataRoot, preOrder2::add, IterationOrder.PRE);
+        treeTraversal.backtrackBased(testDataRoot, preOrder2::add, IterationOrder.PRE);
 //        printOrder(preOrder2);
         List<Node> preOrder3 = new ArrayList<>();
-        treeIteration.shortPreOrder(testDataRoot, preOrder3::add);
+        treeTraversal.shortPreOrder(testDataRoot, preOrder3::add);
 //        printOrder(preOrder3);
         compareList(preOrder, preOrder2);
         compareList(preOrder, preOrder3);
 
 
         List<Node> postOrder = new ArrayList<>();
-        treeIteration.recursivePostOrder(testDataRoot, postOrder::add);
+        treeTraversal.recursivePostOrder(testDataRoot, postOrder::add);
 //        printOrder(postOrder);
         List<Node> postOrder2 = new ArrayList<>();
-        treeIteration.backtrackBased(testDataRoot, postOrder2::add, IterationOrder.POST);
+        treeTraversal.backtrackBased(testDataRoot, postOrder2::add, IterationOrder.POST);
 //        printOrder(postOrder2);
         List<Node> postOrder3 = new ArrayList<>();
-        treeIteration.shortPostOrder(testDataRoot, postOrder3::add);
+        treeTraversal.shortPostOrder(testDataRoot, postOrder3::add);
 //        printOrder(postOrder3);
         compareList(postOrder, postOrder2);
         compareList(postOrder, postOrder3);
 
         List<Node> breadthFirstOrder = new ArrayList<>();
-        treeIteration.breadthFirst(testDataRoot, breadthFirstOrder::add);
+        treeTraversal.breadthFirst(testDataRoot, breadthFirstOrder::add);
 //        printOrder(breadthFirstOrder);
     }
 

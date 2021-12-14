@@ -2,7 +2,7 @@ package tree;
 
 import static tree.TreeUtils.*;
 
-public class ParentAwareTree extends TreeIteration {
+public class ParentAwareTree extends TreeTraversal {
 
     public Node findInOrderSuccessor(Node node) {
         if (node.right != null) {

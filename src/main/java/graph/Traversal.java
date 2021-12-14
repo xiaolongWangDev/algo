@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 import static graph.GraphUtils.*;
 
-public class Iteration {
+public class Traversal {
     public void breadthFirst(Node startNode, Consumer<Link> resultCollector) {
         Set<Node> explored = new HashSet<>();
         Queue<Node> queue = new LinkedList<>();
@@ -66,9 +66,9 @@ public class Iteration {
     }
 
     public static void main(String[] args) {
-        Graph testData = getTestData(10, true, 1, 100);
+        Graph testData = getTestData(10, true, 1, 100, false, 0);
         printAdjacencyMatrix(testData);
-        Iteration algo = new Iteration();
+        Traversal algo = new Traversal();
         System.out.println("BF");
         algo.breadthFirst(testData.nodes.get(1), System.out::println);
         System.out.println("DF");

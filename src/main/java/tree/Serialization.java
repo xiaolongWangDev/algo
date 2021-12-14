@@ -6,7 +6,7 @@ import java.util.Queue;
 
 import static tree.TreeUtils.*;
 
-public class Serialization extends TreeIteration {
+public class Serialization extends TreeTraversal {
 
     public String serialize(Node node) {
         if (node == null) {

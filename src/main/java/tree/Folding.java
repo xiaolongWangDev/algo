@@ -1,10 +1,8 @@
 package tree;
 
-import java.util.List;
-
 import static tree.TreeUtils.*;
 
-public class Folding extends TreeIteration {
+public class Folding extends TreeTraversal {
 
     public Node grow(int n, int value) {
         if (n == 0) return null;

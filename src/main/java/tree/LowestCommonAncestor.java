@@ -1,10 +1,8 @@
 package tree;
 
-import java.util.Random;
-
 import static tree.TreeUtils.*;
 
-public class LowestCommonAncestor extends TreeIteration {
+public class LowestCommonAncestor extends TreeTraversal {
 
     public Node find(Node node, Node a, Node b) {
         if (node == null) {
