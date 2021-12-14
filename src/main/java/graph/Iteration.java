@@ -46,6 +46,25 @@ public class Iteration {
         } while (!stack.isEmpty());
     }
 
+    public void depthFirstShorter(Node startNode, Consumer<Link> resultCollector) {
+        Stack<Node> stack = new Stack<>();
+        Set<Node> explored = new HashSet<>();
+        explored.add(startNode);
+        stack.push(startNode);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            for (Link link : cur.outgoing) {
+                if (!explored.contains(link.to)) {
+                    resultCollector.accept(link);
+                    explored.add(link.to);
+                    stack.push(cur);
+                    stack.push(link.to);
+                    break;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Graph testData = getTestData(10, true, 1, 100);
         printAdjacencyMatrix(testData);
