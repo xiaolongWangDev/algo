@@ -26,7 +26,7 @@ public class MaxHeap {
 
     public void insert(int newValue) {
         if (heapSize >= buffer.length) {
-            expend();
+            expand();
         }
         int pointer = heapSize;
         buffer[heapSize++] = newValue;
@@ -63,7 +63,7 @@ public class MaxHeap {
         heapSize = savedHeapSize;
     }
 
-    private void expend() {
+    private void expand() {
 //        System.out.println("bump buffer size to " + buffer.length * 2);
         int[] temp = new int[buffer.length * 2];
         //noinspection ManualArrayCopy
