@@ -69,7 +69,7 @@ public class GraphUtils {
 
         int linkId = 1;
         for (int i = 1; i <= nNodes; i++) {
-            for (int j = loopFree ? i + 1 : i; j <= nNodes; j++) {
+            for (int j = loopFree ? i + 1 : 1; j <= nNodes; j++) {
                 if (i != j) {
                     int weight = minWeight + random.nextInt(maxWeight - minWeight);
                     if (random.nextInt(10) >= sparseLevel) {
