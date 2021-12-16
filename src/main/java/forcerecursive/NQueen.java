@@ -43,7 +43,7 @@ public class NQueen {
         int count = 0;
         while (candidates != 0) {
             int candidate = candidates & (~candidates + 1);
-            count += placeQueenBitOptimizationRec(allPlaced, usedCol | candidate, (leftDiagonalConstraints | candidate) << 1, (rightDiagonalConstraints | candidate) >> 1);
+            count += placeQueenBitOptimizationRec(allPlaced, usedCol | candidate, (leftDiagonalConstraints | candidate) << 1, (rightDiagonalConstraints | candidate) >>> 1);
             candidates = candidates - candidate;
         }
         return count;
