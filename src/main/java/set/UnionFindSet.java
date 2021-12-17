@@ -1,9 +1,6 @@
 package set;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UnionFindSet<T> {
     public static class Element<T> {
@@ -14,11 +11,11 @@ public class UnionFindSet<T> {
         }
     }
 
-    private Map<T, Element<T>> data = new HashMap<>();
-    private Map<Element<T>, Element<T>> parent = new HashMap<>();
-    private Map<Element<T>, Integer> size = new HashMap<>();
+    private final Map<T, Element<T>> data = new HashMap<>();
+    private final Map<Element<T>, Element<T>> parent = new HashMap<>();
+    private final Map<Element<T>, Integer> size = new HashMap<>();
 
-    public UnionFindSet(List<T> elements) {
+    public UnionFindSet(Collection<T> elements) {
         elements.forEach(e -> {
             Element<T> wrapper = new Element<>(e);
             data.put(e, wrapper);

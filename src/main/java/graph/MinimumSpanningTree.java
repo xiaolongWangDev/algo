@@ -1,5 +1,7 @@
 package graph;
 
+import set.UnionFindSet;
+
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -13,11 +15,13 @@ public class MinimumSpanningTree {
     public void kruskal(Graph graph, Consumer<Link> resultCollector) {
         PriorityQueue<Link> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o.weight));
         heap.addAll(graph.links);
-        MyUnionFind uf = new MyUnionFind(graph.nodes.values());
+//        MyUnionFind uf = new MyUnionFind(graph.nodes.values());
+        UnionFindSet<Node> uf = new UnionFindSet<>(graph.nodes.values());
         Set<Node> added = new HashSet<>();
         while (!heap.isEmpty() && added.size() != graph.nodes.size()) {
             Link link = heap.poll();
-            if (!uf.inSameSet(link.from, link.to)) {
+//            if (!uf.inSameSet(link.from, link.to)) {
+            if (!uf.isInSameSet(link.from, link.to)) {
                 resultCollector.accept(link);
                 uf.union(link.from, link.to);
                 added.add(link.from);
@@ -82,8 +86,8 @@ public class MinimumSpanningTree {
         printAdjacencyMatrix(testData);
         MinimumSpanningTree algo = new MinimumSpanningTree();
         List<Link> results = new ArrayList<>();
-//        algo.kruskal(testData, results::add);
-//        results.forEach(System.out::println);
+        algo.kruskal(testData, results::add);
+        results.forEach(System.out::println);
         results.clear();
         algo.prim(testData, results::add);
         results.forEach(System.out::println);
