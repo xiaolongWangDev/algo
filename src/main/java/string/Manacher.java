@@ -24,12 +24,12 @@ public class Manacher {
                 }
             } else {
                 int mirrorIndex = 2 * lastCenter - i; // index of left mirror of point i
-                if (leftRadiusIndex(mirrorIndex, radiusArr[mirrorIndex]) > leftRadiusIndex(lastCenter, lastCenterRadius)) {
+                if (leftRadiusIndex(mirrorIndex, radiusArr[mirrorIndex]) > leftRadiusIndex(lastCenter, lastCenterRadius)) { // small circle is inside large circle
                     radiusArr[i] = radiusArr[mirrorIndex];
-                } else if (leftRadiusIndex(mirrorIndex, radiusArr[mirrorIndex]) < leftRadiusIndex(lastCenter, lastCenterRadius)) {
+                } else if (leftRadiusIndex(mirrorIndex, radiusArr[mirrorIndex]) < leftRadiusIndex(lastCenter, lastCenterRadius)) { // small circle is outside large circle
                     radiusArr[i] = mirrorIndex - leftRadiusIndex(lastCenter, lastCenterRadius);
                 } else {
-                    int radius = tryRadius(filled, i, rightRadiusIndex(lastCenter, lastCenterRadius) - i);
+                    int radius = tryRadius(filled, i, rightRadiusIndex(lastCenter, lastCenterRadius) - i); // small circle touching large circle internally
                     radiusArr[i] = radius;
                     if (rightRadiusIndex(i, radius) > rightRadiusIndex(lastCenter, lastCenterRadius)){
                         lastCenter = i;
