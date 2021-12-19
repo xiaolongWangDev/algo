@@ -180,6 +180,72 @@ public class TreeTraversal {
         }
     }
 
+    public void morris(Node root, Consumer<Node> resultCollector, IterationOrder order) {
+        if (root == null) return;
+        Node cur = root;
+        Node rightmostInLeftTree;
+        while (cur != null) {
+            if (cur.left != null) {
+                rightmostInLeftTree = cur.left;
+                while (rightmostInLeftTree.right != null
+                        && rightmostInLeftTree.right != cur // when it's search the 2nd time, it'll point to cur
+                ) {
+                    rightmostInLeftTree = rightmostInLeftTree.right;
+                }
+                if (rightmostInLeftTree.right == null) {
+                    // cur being traversed the 1st time
+                    rightmostInLeftTree.right = cur;
+                    if (order == IterationOrder.PRE) {
+                        resultCollector.accept(cur);
+                    }
+                    cur = cur.left;
+
+                    continue;
+                } else {
+                    // cur being traversed the 2nd time
+                    rightmostInLeftTree.right = null;
+                    if (order == IterationOrder.IN) {
+                        resultCollector.accept(cur);
+                    }
+                    if (order == IterationOrder.POST) {
+                        collectRightEdgeBottomUp(cur.left, resultCollector);
+                    }
+                }
+            } else {
+                if (order == IterationOrder.IN || order == IterationOrder.PRE) {
+                    resultCollector.accept(cur);
+                }
+            }
+            cur = cur.right;
+        }
+
+        if (order == IterationOrder.POST) {
+            collectRightEdgeBottomUp(root, resultCollector);
+        }
+    }
+
+    private void collectRightEdgeBottomUp(Node root, Consumer<Node> resultCollector) {
+        Node bottomNode = reverseRightEdge(root);
+        Node cur = bottomNode;
+        while (cur != null) {
+            resultCollector.accept(cur);
+            cur = cur.right;
+        }
+        reverseRightEdge(bottomNode);
+    }
+
+    private Node reverseRightEdge(Node root) {
+        Node cur = root;
+        Node pre = null;
+        while (cur != null) {
+            Node temp = cur.right;
+            cur.right = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
+
     // some handy utils for others to use
     public static class NthNodeResult {
         Node node;
@@ -237,10 +303,35 @@ public class TreeTraversal {
     public static void main(String[] args) {
         int min = 0;
         int max = 100;
-        int height = 3;
+        int height = 10;
         Node testDataRoot = testData(min, max, height);
 //        printTree(testDataRoot, height);
         TreeTraversal treeTraversal = new TreeTraversal();
+        System.out.println();
+        List<Node> result = new ArrayList<>();
+        treeTraversal.morris(testDataRoot, result::add, IterationOrder.PRE);
+//        printOrder(result);
+        List<Node> expected = new ArrayList<>();
+        treeTraversal.shortPreOrder(testDataRoot, expected::add);
+        compareList(expected, result);
+
+        result.clear();
+        expected.clear();
+        treeTraversal.morris(testDataRoot, result::add, IterationOrder.IN);
+//        printOrder(result);
+        treeTraversal.shortInOrder(testDataRoot, expected::add);
+        compareList(expected, result);
+
+        result.clear();
+        expected.clear();
+        treeTraversal.morris(testDataRoot, result::add, IterationOrder.POST);
+//        printOrder(result);
+        treeTraversal.shortPostOrder(testDataRoot, expected::add);
+        compareList(expected, result);
+
+    }
+
+    private static void myOldTests(TreeTraversal treeTraversal, Node testDataRoot) {
         List<Node> inOrder = new ArrayList<>();
         treeTraversal.recursiveInOrder(testDataRoot, inOrder::add);
 //        printOrder(inOrder);
