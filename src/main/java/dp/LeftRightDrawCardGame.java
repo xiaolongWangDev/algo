@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static array.sorting.SortingUtils.generateTestData;
+
 public class LeftRightDrawCardGame {
 
     private static class Strategy {
@@ -142,20 +144,22 @@ public class LeftRightDrawCardGame {
             tempSecond = new Strategy[input.length];
         }
 
-        printResult(memoFirst[input.length - 1], memoSecond[input.length - 1]);
+        System.out.print(memoFirst[input.length - 1].score);
+
+//        printResult(memoFirst[input.length - 1], memoSecond[input.length - 1]);
     }
 
     public static void main(String[] args) {
         LeftRightDrawCardGame algo = new LeftRightDrawCardGame();
-        int[] input = {1, 2, 100, 4};
-        List<Integer> firstPlayerDraws = new ArrayList<>();
-        List<Integer> secondPlayerDraws = new ArrayList<>();
-        Strategy firstStrategy = algo.firstDraw(input, 0, input.length - 1, firstPlayerDraws);
-        Strategy secondStrategy = algo.secondDraw(input, 0, input.length - 1, secondPlayerDraws);
+//        int[] input = {1, 2, 100, 4};
+//        List<Integer> firstPlayerDraws = new ArrayList<>();
+//        List<Integer> secondPlayerDraws = new ArrayList<>();
+//        Strategy firstStrategy = algo.firstDraw(input, 0, input.length - 1, firstPlayerDraws);
+//        Strategy secondStrategy = algo.secondDraw(input, 0, input.length - 1, secondPlayerDraws);
+//
+//        printResult(firstStrategy, secondStrategy);
 
-        printResult(firstStrategy, secondStrategy);
-
-        algo.inductionMemoryEfficient(input);
+        algo.inductionMemoryEfficient(generateTestData(1000, 0, 100));
     }
 
     private static void printResult(Strategy memoFirst, Strategy memoSecond) {
