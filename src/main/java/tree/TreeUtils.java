@@ -11,8 +11,15 @@ public class TreeUtils {
         int value;
         Node left;
         Node right;
-        /*not a standard tree node attribute, only used for ParentAwareTree algorithm */
+        /* not a standard tree node attribute, only used for ParentAwareTree algorithm */
         Node parent;
+        /* following fields are for balanced tree structure */
+        /* AVL */
+        int height = -1;
+        /* SBT */
+        int size;
+        /* RBT */
+        int color;
     }
 
     public static int maxHeight(Node root) {
