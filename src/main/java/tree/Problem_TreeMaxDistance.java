@@ -2,7 +2,7 @@ package tree;
 
 import static tree.TreeUtils.*;
 
-public class TreeMaxDistance extends TreeTraversal {
+public class Problem_TreeMaxDistance extends TreeTraversal {
 
     private static class Info {
         int maxDistance;
@@ -36,7 +36,7 @@ public class TreeMaxDistance extends TreeTraversal {
 
     public static void main(String[] args) {
         int height = 4;
-        TreeMaxDistance algo = new TreeMaxDistance();
+        Problem_TreeMaxDistance algo = new Problem_TreeMaxDistance();
         Node testData = testData(0, 100, height);
         printTree(testData, height);
         System.out.println(algo.maxDistance(testData));

@@ -2,7 +2,7 @@ package dp;
 
 import static dp.DpUtils.*;
 
-public class RobotWalk {
+public class Problem_RobotWalk {
 
     public int simpleRec(final int LENGTH, final int TARGET_INDEX, int startIndex, int steps) {
         if (steps == 0) {
@@ -96,7 +96,7 @@ public class RobotWalk {
 
     //0 1 2 3 4
     public static void main(String[] args) {
-        RobotWalk algo = new RobotWalk();
+        Problem_RobotWalk algo = new Problem_RobotWalk();
         final int LENGTH = 5;
         final int TARGET_INDEX = 3;
         int startIndex = 1;

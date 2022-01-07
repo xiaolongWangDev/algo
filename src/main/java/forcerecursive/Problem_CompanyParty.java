@@ -1,8 +1,8 @@
-package tree;
+package forcerecursive;
 
 import java.util.List;
 
-public class CompanyParty extends TreeTraversal {
+public class Problem_CompanyParty {
 
     private static class Info {
         int attendingHappiness;
@@ -53,7 +53,7 @@ public class CompanyParty extends TreeTraversal {
                         new Employee(4, List.of(new Employee(200, List.of()))),
                         new Employee(5, List.of(new Employee(300, List.of())))));
 
-        CompanyParty algo = new CompanyParty();
+        Problem_CompanyParty algo = new Problem_CompanyParty();
         System.out.println(algo.maxHappiness(boss));
 
         boss = new Employee(10,

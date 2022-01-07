@@ -1,6 +1,6 @@
 package forcerecursive;
 
-public class Hanoi {
+public class Problem_Hanoi {
 
     // a valid hanoi tower of height is sitting on "from"
     // all block pieces have continuous id
@@ -17,7 +17,7 @@ public class Hanoi {
     }
 
     public static void main(String[] args) {
-        Hanoi algo = new Hanoi();
+        Problem_Hanoi algo = new Problem_Hanoi();
         algo.move(5, "L", "R", "M");
     }
 }

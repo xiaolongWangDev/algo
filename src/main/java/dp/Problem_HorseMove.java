@@ -1,6 +1,6 @@
 package dp;
 
-public class HorseMove {
+public class Problem_HorseMove {
 
     /*
         0   1   2   3   4 ... M
@@ -133,7 +133,7 @@ public class HorseMove {
     }
 
     public static void main(String[] args) {
-        HorseMove algo = new HorseMove();
+        Problem_HorseMove algo = new Problem_HorseMove();
         System.out.println(algo.move(10, 9, 1, 2, 3));
         System.out.println(algo.induction(10, 9, 1, 2, 3));
         System.out.println(algo.inductionMemoryEfficient(10, 9, 1, 2, 3));

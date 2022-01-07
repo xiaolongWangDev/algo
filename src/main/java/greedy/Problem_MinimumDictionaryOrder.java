@@ -3,7 +3,7 @@ package greedy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinimumDictionaryOrder {
+public class Problem_MinimumDictionaryOrder {
     public List<String> sort(List<String> input) {
         List<String> result = new ArrayList<>(input);
         result.sort((s1, s2) -> (s1 + s2).compareTo(s2 + s1));
@@ -11,7 +11,7 @@ public class MinimumDictionaryOrder {
     }
 
     public static void main(String[] args) {
-        MinimumDictionaryOrder algo = new MinimumDictionaryOrder();
+        Problem_MinimumDictionaryOrder algo = new Problem_MinimumDictionaryOrder();
         List<String> result = algo.sort(List.of("ab", "a", "b", "a", "cca", "acbe", "abc", "d", "a"));
         System.out.println(String.join("", result));
     }

@@ -1,6 +1,6 @@
 package dp;
 
-public class WalkSurvival {
+public class Problem_WalkSurvival {
 
     /*
         0   1   2   3   4 ... M
@@ -56,7 +56,7 @@ public class WalkSurvival {
     }
 
     public static void main(String[] args) {
-        WalkSurvival algo = new WalkSurvival();
+        Problem_WalkSurvival algo = new Problem_WalkSurvival();
         System.out.println(algo.move(5, 5, 1, 2, 1));
         System.out.println(algo.move(5, 5, 0, 0, 1));
         System.out.println(algo.move(5, 5, 4, 4, 1));

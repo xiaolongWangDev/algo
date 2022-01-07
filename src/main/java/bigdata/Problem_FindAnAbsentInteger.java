@@ -3,7 +3,7 @@ package bigdata;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class FindAnAbsentInteger {
+public class Problem_FindAnAbsentInteger {
     public Long findUsingLeastSpace(Supplier<Iterator<Long>> source, long rBound) {
         int level = 0;
         long lBound = 0;
@@ -82,7 +82,7 @@ public class FindAnAbsentInteger {
     }
 
     public static void main(String[] args) {
-        FindAnAbsentInteger algo = new FindAnAbsentInteger();
+        Problem_FindAnAbsentInteger algo = new Problem_FindAnAbsentInteger();
         List<Long> data = new ArrayList<>();
         int nBits = 15;
         long rBound = (1L << nBits) - 1;

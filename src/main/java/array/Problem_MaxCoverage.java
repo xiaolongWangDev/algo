@@ -1,6 +1,6 @@
 package array;
 
-public class MaxCoverage {
+public class Problem_MaxCoverage {
     // key takeaway: pointer never goes back
     public int find(int windowSize, int[] points) {
         int result = 0;
@@ -20,7 +20,7 @@ public class MaxCoverage {
     }
 
     public static void main(String[] args) {
-        MaxCoverage algo = new MaxCoverage();
+        Problem_MaxCoverage algo = new Problem_MaxCoverage();
         System.out.println(algo.find(5,  new int[]{2, 4, 8, 9, 12, 17}));
         System.out.println(algo.find(14,  new int[]{0, 13, 24, 35, 46, 57, 60, 72, 87}));
     }

@@ -5,6 +5,9 @@ import java.util.*;
 import static array.sorting.SortingUtils.generateTestData;
 import static array.sorting.SortingUtils.print;
 
+/**
+ * this is a util I created to provide a slightly shuffled sorted list that can be used for {@link Problem_SortNearlySorted} problem
+ */
 public class ShuffleWithMaxOffset {
 
 
@@ -22,7 +25,7 @@ public class ShuffleWithMaxOffset {
 
         while (!available.isEmpty()) {
             int[] options = getOptions(maxDistance, currentIndex, emptyIndex, input.length, available);
-            if(options.length == 0) {
+            if (options.length == 0) {
                 throw new IllegalArgumentException("there's no further solution");
             }
             int nextIndexToTry = options[random.nextInt(options.length)];
@@ -46,8 +49,8 @@ public class ShuffleWithMaxOffset {
     }
 
     private int[] getOptions(int maxDistance, int currentIndex, int emptyIndex, int arrayLength, Set<Integer> available) {
-        int minIndex = currentIndex > emptyIndex? Math.max(currentIndex - maxDistance, 0): currentIndex;
-        int maxIndex = currentIndex > emptyIndex? currentIndex: Math.min(currentIndex + maxDistance, arrayLength - 1);
+        int minIndex = currentIndex > emptyIndex ? Math.max(currentIndex - maxDistance, 0) : currentIndex;
+        int maxIndex = currentIndex > emptyIndex ? currentIndex : Math.min(currentIndex + maxDistance, arrayLength - 1);
         List<Integer> result = new ArrayList<>();
         for (int i = minIndex; i <= maxIndex; i++) {
             if (available.contains(i)) {

@@ -2,7 +2,7 @@ package tree;
 
 import static tree.TreeUtils.*;
 
-public class Folding extends TreeTraversal {
+public class Problem_Folding extends TreeTraversal {
 
     public Node grow(int n, int value) {
         if (n == 0) return null;
@@ -15,7 +15,7 @@ public class Folding extends TreeTraversal {
 
     public static void main(String[] args) {
         int height = 4;
-        Folding algo = new Folding();
+        Problem_Folding algo = new Problem_Folding();
         Node root = algo.grow(height, 0);
         printTree(root, height);
         algo.shortInOrder(root, (node) -> System.out.print(node.value));

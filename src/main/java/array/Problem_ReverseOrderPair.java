@@ -5,7 +5,7 @@ import java.util.List;
 
 import static array.sorting.SortingUtils.print;
 
-public class ReverseOrderPair {
+public class Problem_ReverseOrderPair {
 
     public List<List<Integer>> sortAndFindReversePair(int left, int right, int[] input) {
         if (left >= right) return List.of();
@@ -54,7 +54,7 @@ public class ReverseOrderPair {
     public static void main(String[] args) {
         int[] testData = {3, 2, 4, 5, 0};
         print(testData);
-        var algo = new ReverseOrderPair();
+        var algo = new Problem_ReverseOrderPair();
         List<List<Integer>> reversePairs = algo.sortAndFindReversePair(0, testData.length - 1, testData);
         print(testData);
         reversePairs.forEach(l -> {

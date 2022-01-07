@@ -1,6 +1,6 @@
 package forcerecursive;
 
-public class Backpack {
+public class Problem_Backpack {
 
     private static class Item {
         int value;
@@ -25,7 +25,7 @@ public class Backpack {
     }
 
     public static void main(String[] args) {
-        Backpack algo = new Backpack();
+        Problem_Backpack algo = new Problem_Backpack();
         System.out.println(algo.findMaxValue(0, new Item[]{new Item(1, 10), new Item(1, 1), new Item(3, 10), new Item(5, 3), new Item(5, 3)}, 5));
     }
 }

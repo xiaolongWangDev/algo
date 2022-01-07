@@ -2,7 +2,7 @@ package array;
 
 import static array.sorting.SortingUtils.*;
 
-public class SmallSum {
+public class Problem_SmallSum {
 
     public int sortAndGetSmallSum(int left, int right, int[] input) {
         if (left >= right) return 0;
@@ -60,7 +60,7 @@ public class SmallSum {
         int[] testData = generateTestData(100000);
         int[] copiedArray = new int[testData.length];
         System.arraycopy(testData, 0, copiedArray, 0, testData.length);
-        var algo = new SmallSum();
+        var algo = new Problem_SmallSum();
         int smallSum = algo.sortAndGetSmallSum(0, testData.length - 1, testData);
         int target = bruteForce(copiedArray);
         if(smallSum != target) {

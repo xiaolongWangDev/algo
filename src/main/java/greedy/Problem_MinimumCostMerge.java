@@ -1,11 +1,9 @@
 package greedy;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class MinimumCostMerge {
+public class Problem_MinimumCostMerge {
     public int merge(List<Integer> input) {
         if (input.size() < 2) {
             return input.stream().reduce(0, Integer::sum);
@@ -23,7 +21,7 @@ public class MinimumCostMerge {
     }
 
     public static void main(String[] args) {
-        MinimumCostMerge algo = new MinimumCostMerge();
+        Problem_MinimumCostMerge algo = new Problem_MinimumCostMerge();
         System.out.println(algo.merge(List.of(10, 20, 30)));
     }
 }

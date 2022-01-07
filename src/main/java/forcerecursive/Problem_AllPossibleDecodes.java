@@ -1,8 +1,6 @@
 package forcerecursive;
 
-import java.util.Stack;
-
-public class AllPossibleDecodes {
+public class Problem_AllPossibleDecodes {
 
     public int find(int i, char[] input) {
         if (i == input.length) {
@@ -34,7 +32,7 @@ public class AllPossibleDecodes {
     }
 
     public static void main(String[] args) {
-        AllPossibleDecodes algo = new AllPossibleDecodes();
+        Problem_AllPossibleDecodes algo = new Problem_AllPossibleDecodes();
         System.out.println(algo.find(0, "10111".toCharArray()));
     }
 }

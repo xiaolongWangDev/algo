@@ -1,6 +1,6 @@
 package pattern;
 
-public class GrassEating {
+public class Problem_GrassEating {
     public char naive(int grass) {
         if (grass == 0) return 'S';
         if (grass == 1) return 'F';
@@ -21,7 +21,7 @@ public class GrassEating {
     }
 
     public static void main(String[] args) {
-        GrassEating algo = new GrassEating();
+        Problem_GrassEating algo = new Problem_GrassEating();
         for (int i = 0; i < 50; i++) {
             if (algo.naive(i) != algo.formula(i)) {
                 throw new RuntimeException("failed at " + i);

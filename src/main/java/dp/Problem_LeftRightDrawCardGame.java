@@ -1,12 +1,11 @@
 package dp;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static array.sorting.SortingUtils.generateTestData;
 
-public class LeftRightDrawCardGame {
+public class Problem_LeftRightDrawCardGame {
 
     private static class Strategy {
         List<Integer> draws;
@@ -150,7 +149,7 @@ public class LeftRightDrawCardGame {
     }
 
     public static void main(String[] args) {
-        LeftRightDrawCardGame algo = new LeftRightDrawCardGame();
+        Problem_LeftRightDrawCardGame algo = new Problem_LeftRightDrawCardGame();
 //        int[] input = {1, 2, 100, 4};
 //        List<Integer> firstPlayerDraws = new ArrayList<>();
 //        List<Integer> secondPlayerDraws = new ArrayList<>();

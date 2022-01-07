@@ -5,7 +5,7 @@ import set.UnionFindSet;
 import java.util.*;
 import java.util.function.BiConsumer;
 
-public class IslandDetection {
+public class Problem_IslandDetection {
 
     public static class Bounds {
         int U;
@@ -173,14 +173,14 @@ public class IslandDetection {
                 {1, 1, 1, 1, 1}
         };
 
-        IslandDetection islandDetection = new IslandDetection();
+        Problem_IslandDetection p = new Problem_IslandDetection();
         Bounds leftMapBounds = new Bounds(0, 7, 0, 3);
-        Map<Island, List<Coordinate>> leftResult = islandDetection.detect(testMatrix, leftMapBounds);
+        Map<Island, List<Coordinate>> leftResult = p.detect(testMatrix, leftMapBounds);
         Bounds rightMapBounds = new Bounds(0, 7, 3, 5);
-        Map<Island, List<Coordinate>> rightResult = islandDetection.detect(testMatrix, rightMapBounds);
+        Map<Island, List<Coordinate>> rightResult = p.detect(testMatrix, rightMapBounds);
         System.out.println(leftResult);
         System.out.println(rightResult);
-        System.out.println(islandDetection.mergeResults(leftResult, rightResult, leftMapBounds, rightMapBounds));
+        System.out.println(p.mergeResults(leftResult, rightResult, leftMapBounds, rightMapBounds));
 
     }
 }

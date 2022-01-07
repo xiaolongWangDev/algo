@@ -1,6 +1,6 @@
 package preprocess;
 
-public class BiggestSquare {
+public class Problem_BiggestSquare {
     @SuppressWarnings("DuplicatedCode")
     public int find(int[][] matrix) {
         int height = matrix.length;
@@ -53,7 +53,7 @@ public class BiggestSquare {
     }
 
     public static void main(String[] args) {
-        BiggestSquare algo = new BiggestSquare();
+        Problem_BiggestSquare algo = new Problem_BiggestSquare();
         int[][] matrix = new int[][]{
                 {1, 1, 1, 1, 1, 1},
                 {1, 1, 0, 0, 1, 1},

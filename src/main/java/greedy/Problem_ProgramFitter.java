@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ProgramFitter {
+public class Problem_ProgramFitter {
     private static class Program {
         int start;
         int end;
@@ -37,7 +37,7 @@ public class ProgramFitter {
     }
 
     public static void main(String[] args) {
-        ProgramFitter algo = new ProgramFitter();
+        Problem_ProgramFitter algo = new Problem_ProgramFitter();
         List<Program> result = algo.arrange(new ArrayList<>(List.of(new Program(0, 100), new Program(2, 3), new Program(5, 80), new Program(10, 30), new Program(6, 9))));
         result.forEach(System.out::println);
     }

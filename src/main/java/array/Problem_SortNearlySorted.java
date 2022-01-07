@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 import static array.sorting.SortingUtils.*;
 
-public class SortNearlySorted {
+public class Problem_SortNearlySorted {
 
     public void sort(int maxDistance, int[] input) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>(maxDistance + 1);
@@ -37,7 +37,7 @@ public class SortNearlySorted {
 //        print(testData);
         new ShuffleWithMaxOffset().shuffle(maxDistance, testData);
 //        print(testData);
-        new SortNearlySorted().sort(maxDistance, testData);
+        new Problem_SortNearlySorted().sort(maxDistance, testData);
 //        print(testData);
         compareArray(copiedArray, testData);
     }

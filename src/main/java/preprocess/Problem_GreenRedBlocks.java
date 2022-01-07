@@ -1,6 +1,6 @@
 package preprocess;
 
-public class GreenRedBlocks {
+public class Problem_GreenRedBlocks {
 
     //  RGRGRGG to RRRGGGG, paint 2 times
     public int paint(char[] blocks) {
@@ -33,7 +33,7 @@ public class GreenRedBlocks {
     }
 
     public static void main(String[] args) {
-        GreenRedBlocks algo = new GreenRedBlocks();
+        Problem_GreenRedBlocks algo = new Problem_GreenRedBlocks();
         System.out.println(algo.paint("RGRGRGG".toCharArray()));
     }
 }

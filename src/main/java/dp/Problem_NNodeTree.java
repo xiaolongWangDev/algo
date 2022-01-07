@@ -1,6 +1,6 @@
-package forcerecursive;
+package dp;
 
-public class NNodeTree {
+public class Problem_NNodeTree {
     public int countNaive(int n) {
         if (n == 0) {
             return 1;
@@ -41,7 +41,7 @@ public class NNodeTree {
     }
 
     public static void main(String[] args) {
-        NNodeTree algo = new NNodeTree();
+        Problem_NNodeTree algo = new Problem_NNodeTree();
         int n = 10;
         for(int i = 0; i <= 10; i++)
             System.out.println(algo.countNaive(i));

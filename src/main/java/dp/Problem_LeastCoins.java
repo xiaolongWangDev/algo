@@ -2,7 +2,7 @@ package dp;
 
 import static dp.DpUtils.*;
 
-public class LeastCoins {
+public class Problem_LeastCoins {
 
     public int simpleRec(final int[] VALUES, int cur, int balance) {
         if (balance < 0) {
@@ -118,7 +118,7 @@ public class LeastCoins {
 
     //0 1 2 3 4
     public static void main(String[] args) {
-        LeastCoins algo = new LeastCoins();
+        Problem_LeastCoins algo = new Problem_LeastCoins();
         final int[] VALUES = {2, 7, 3, 5, 3};
         int balance = 10;
         System.out.println(algo.simpleRec(VALUES, 0, balance));

@@ -1,6 +1,6 @@
 package pattern;
 
-public class Apple68 {
+public class Problem_Apple68 {
     public int minBagsNaive(int nApples) {
         if (nApples % 2 == 1) {
             return -1;
@@ -43,7 +43,7 @@ public class Apple68 {
 
     // when we "charted" the output of the naive solution, we can find a pattern and then squeeze it to a formula
     public static void main(String[] args) {
-        Apple68 algo = new Apple68();
+        Problem_Apple68 algo = new Problem_Apple68();
         for (int i = 0; i < 1000; i++) {
             int bags = algo.minBagsNaive(i);
             int padding = bags == -1 ? 2 : 2 + bags * 2;

@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class ProjectPick {
+public class Problem_ProjectPick {
     private static class Project {
         int cost;
         int profit;
@@ -47,7 +47,7 @@ public class ProjectPick {
     }
 
     public static void main(String[] args) {
-        ProjectPick algo = new ProjectPick();
+        Problem_ProjectPick algo = new Problem_ProjectPick();
         List<Project> result = algo.pick(List.of(
                         new Project(3, 1),
                         new Project(1, 2),

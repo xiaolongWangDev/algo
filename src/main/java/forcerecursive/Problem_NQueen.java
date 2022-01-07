@@ -1,9 +1,8 @@
 package forcerecursive;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class NQueen {
+public class Problem_NQueen {
 
     public int placeQueen(int row, List<Integer> prev, int n) {
         if (row == n) {
@@ -60,7 +59,7 @@ public class NQueen {
     }
 
     public static void main(String[] args) {
-        NQueen algo = new NQueen();
+        Problem_NQueen algo = new Problem_NQueen();
 //        System.out.println(algo.placeQueen(0, new ArrayList<>(), 8));
         System.out.println(algo.placeQueenBitOptimization(8));
     }
