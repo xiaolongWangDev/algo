@@ -52,8 +52,20 @@ public class MutableHeap<T, U> {
         return index == null ? null : buffer.get(index);
     }
 
+    public List<T> getAll() {
+        return List.copyOf(buffer);
+    }
+
     public T peek() {
         return buffer.get(0);
+    }
+
+    public boolean contains(T value) {
+        return indexMap.containsKey(indexKeyMapper.apply(value));
+    }
+
+    public int size() {
+        return indexMap.size();
     }
 
     public T poll() {
