@@ -28,6 +28,10 @@ public class Problem_RealtimeKMostFrequent {
 
         public void add(String s) {
             counts.put(s, counts.getOrDefault(s, 0) + 1);
+            // you may doubt here, since Im not keeping track of the existing StringAndCount's,
+            // but rather just create a new one. How can this be found?
+            // This is OK because the key used is of type String. And it's being used for the contains check
+            // for an Object type key, you may need to change it's hashCode and equals logic
             StringAndCount stringAndCount = new StringAndCount(s, counts.get(s));
             if (minHeap.contains(stringAndCount)) {
                 minHeap.setValue(s, stringAndCount);
