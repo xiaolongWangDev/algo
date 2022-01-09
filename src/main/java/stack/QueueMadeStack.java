@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class QueueMadeStack<T> {
-    private Queue<T> a = new LinkedList<>();
-    private Queue<T> b = new LinkedList<>();
+    private final Queue<T> a = new LinkedList<>();
+    private final Queue<T> b = new LinkedList<>();
     private Queue<T> active = a;
 
     public void push(T element) {
@@ -14,6 +14,18 @@ public class QueueMadeStack<T> {
 
     public boolean isEmpty() {
         return active.isEmpty();
+    }
+
+    public T peek() {
+        if (active.isEmpty()) throw new IllegalArgumentException();
+        Queue<T> buff = active == a ? b : a;
+        T result = null;
+        while (!active.isEmpty()) {
+            result = active.poll();
+            buff.add(result);
+        }
+        active = buff;
+        return result;
     }
 
     public T pop() {
@@ -35,10 +47,13 @@ public class QueueMadeStack<T> {
         structure.push(4);
         structure.push(5);
 
+        System.out.println(structure.peek());
         System.out.println(structure.pop());
         System.out.println(structure.pop());
         System.out.println(structure.pop());
+        System.out.println(structure.peek());
         structure.push(6);
+        System.out.println(structure.peek());
         structure.push(7);
         System.out.println(structure.pop());
         System.out.println(structure.pop());
