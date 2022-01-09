@@ -2,7 +2,7 @@ package matrix;
 
 import java.util.function.Consumer;
 
-public class SpiralOrderTraverse {
+public class Traverse {
     public void spiralOrder(int[][] matrix, Consumer<Integer> consumer) {
         int n = matrix.length;
         if (n == 0) return;
@@ -19,6 +19,32 @@ public class SpiralOrderTraverse {
             bottomRightY--;
         }
     }
+
+    public void zigzagOrder(int[][] matrix, Consumer<Integer> consumer) {
+        int n = matrix.length;
+        if (n == 0) return;
+        int m = matrix[0].length;
+        int aX = 0;
+        int aY = 0;
+        int bX = 0;
+        int bY = 0;
+        boolean up = false;
+        while (aX < n && bY < m) {
+            traverseDiagonal(matrix, aX, aY, bX, bY, up, consumer);
+            if (aY == m - 1) {
+                aX++;
+            } else {
+                aY++;
+            }
+            if (bX == n - 1) {
+                bY++;
+            } else {
+                bX++;
+            }
+            up = !up;
+        }
+    }
+
 
     private void traverseLoop(int[][] matrix, int topLeftX, int topLeftY, int bottomRightX, int bottomRightY, Consumer<Integer> consumer) {
         if (topLeftX == bottomRightX) {
@@ -45,10 +71,20 @@ public class SpiralOrderTraverse {
         }
     }
 
+    private void traverseDiagonal(int[][] matrix, int aX, int aY, int bX, int bY, boolean up, Consumer<Integer> consumer) {
+        for (int i = 0; i <= bX - aX; i++) {
+            if (up) {
+                consumer.accept(matrix[bX - i][bY + i]);
+            } else {
+                consumer.accept(matrix[aX + i][aY - i]);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        SpiralOrderTraverse algo = new SpiralOrderTraverse();
+        Traverse algo = new Traverse();
         int N = 5;
-        int M = 5;
+        int M = 6;
         int[][] matrix = new int[N][M];
         int num = 1;
         for (int i = 0; i < N; i++) {
@@ -60,7 +96,8 @@ public class SpiralOrderTraverse {
         }
 
         MyPrinter printer = new MyPrinter(20);
-        algo.spiralOrder(matrix, printer::print);
+//        algo.spiralOrder(matrix, printer::print);
+        algo.zigzagOrder(matrix, printer::print);
     }
 
     private static class MyPrinter {
