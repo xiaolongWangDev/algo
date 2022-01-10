@@ -9,7 +9,7 @@ public class Problem_MaxMaxDelta {
             }
         }
         // either max is put in the left section, or the right section.
-        // whichever max is in, we want the max of the other section to be as small as possbile
+        // whichever max is in, we want the max of the other section to be as small as possible
         // when in left, the right section must include the last element, so the max of right section cannot be less
         // than the last element's value. there's no need to add more elements into the right section because it won't
         // bring down the max of that section.
