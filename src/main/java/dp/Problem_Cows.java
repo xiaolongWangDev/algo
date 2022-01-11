@@ -10,7 +10,7 @@ public class Problem_Cows {
         // f(n) = f(n - 1) + f(n -3)
         // f(4) = (f3) + f(1)
         // f(3) = (f3)
-        // f(2) = 0
+        // f(2) = f(2)
         // f(1) = f(1)
         MatrixOptimization algo = new MatrixOptimization();
         for (int i = 4; i < 9; i++) {
