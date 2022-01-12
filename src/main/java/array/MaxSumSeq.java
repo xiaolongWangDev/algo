@@ -2,9 +2,9 @@ package array;
 
 public class MaxSumSeq {
     public static class Info {
-        int start;
-        int end;
-        int value;
+        public int start;
+        public int end;
+        public int value;
 
         public Info(int start, int end, int value) {
             this.start = start;
@@ -23,7 +23,7 @@ public class MaxSumSeq {
     }
 
     public Info find(int[] input) {
-        Info max = new Info(0, 0, Integer.MIN_VALUE);
+        Info max = new Info(-1, -1, Integer.MIN_VALUE);
         int cur = 0;
         int start = 0;
         for (int i = 0; i < input.length; i++) {
