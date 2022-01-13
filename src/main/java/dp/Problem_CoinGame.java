@@ -60,6 +60,8 @@ public class Problem_CoinGame {
     }
 
 
+    // both of these can be summarized to O(1) math formula based
+    // the result is periodic
     public static void main(String[] args) {
         Problem_CoinGame algo = new Problem_CoinGame();
 
