@@ -44,10 +44,10 @@ public class BinarySearch {
             return l == ordered.length ? null : l;
         }
         int mid = l + ((r - l) >> 1);
-        if (ordered[mid] >= target) {
-            return closest(ordered, target, l, mid - 1);
+        if (ordered[mid] > target) {
+            return minGreaterThan(ordered, target, l, mid - 1);
         } else {
-            return closest(ordered, target, mid + 1, r);
+            return minGreaterThan(ordered, target, mid + 1, r);
         }
     }
 
@@ -67,5 +67,12 @@ public class BinarySearch {
         System.out.println(ordered[algo.closest(ordered, -1, 0, ordered.length - 1)]);
         System.out.println(ordered[algo.closest(ordered, 5, 0, ordered.length - 1)]);
         System.out.println(ordered[algo.closest(ordered, 7, 0, ordered.length - 1)]);
+
+        System.out.println();
+
+        for (int j = -1; j <= 7; j++) {
+            System.out.println(algo.minGreaterThan(ordered, j, 0, ordered.length - 1));
+        }
+
     }
 }
