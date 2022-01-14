@@ -1,9 +1,11 @@
 package array;
 
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class BinarySearch {
-    public Integer exactMatch(int[] ordered, int target, int l, int r) {
+    public Integer exactMatch(Integer[] ordered, int target, int l, int r) {
         if (l > r) {
             return null;
         }
@@ -17,7 +19,7 @@ public class BinarySearch {
         }
     }
 
-    public Integer closest(int[] ordered, int target, int l, int r) {
+    public Integer closest(Integer[] ordered, int target, int l, int r) {
         if (l > r) {
             if (l == ordered.length) return r;
             if (r == -1) return l;
@@ -39,7 +41,7 @@ public class BinarySearch {
 //    L R
 //     LR
 //      R L
-    public Integer minGreaterThan(int[] ordered, int target, int l, int r) {
+    public Integer minGreaterThan(Integer[] ordered, int target, int l, int r) {
         if (l > r) {
             return l == ordered.length ? null : l;
         }
@@ -51,9 +53,21 @@ public class BinarySearch {
         }
     }
 
+    public <T> Integer minGreaterThan(List<T> ordered, int target, int l, int r, Function<T, Integer> valueExtractor) {
+        if (l > r) {
+            return l == ordered.size() ? null : l;
+        }
+        int mid = l + ((r - l) >> 1);
+        if (valueExtractor.apply(ordered.get(mid)) > target) {
+            return minGreaterThan(ordered, target, l, mid - 1, valueExtractor);
+        } else {
+            return minGreaterThan(ordered, target, mid + 1, r, valueExtractor);
+        }
+    }
+
     public static void main(String[] args) {
         BinarySearch algo = new BinarySearch();
-        int[] ordered = {1, 2, 3, 4, 6};
+        Integer[] ordered = {1, 2, 3, 4, 6};
         for (int j : ordered) {
             System.out.println(algo.exactMatch(ordered, j, 0, ordered.length - 1));
         }
