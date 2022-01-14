@@ -23,6 +23,18 @@ public class Problem_CoinGame {
 
 
     /*
+            Now let's try if the game has 3 players:
+            If any player still can draw 1~3 cards at step turn, there are some case the winner is not deterministic.
+            for example: begin with 6 coins, A draw 1, and we don't know whether A is going to win, because when B draws
+            more than 1 cards, C will win if he is rational. However, if B only draws 1, C will lose for sure,
+            and A will win if he is rational.
+
+            So let's change to a slightly different problem.
+            Let's add a rule, next player can only draw the same number of card as you did.
+
+            And then we have the following state table.
+            The winning state can be derived by combined the results of the first 3 rows
+
            take / coins   0   1   2   3   4   5   6   7   8   9   10
              1            C   A   B   C   A   B   C   A   B   C   A
              2            C   A   A   B   B   C   C   A   A   B   B
