@@ -1,7 +1,5 @@
 package dp;
 
-import java.util.Arrays;
-
 public class Problem_CountLogicExpression {
     public int count(String exp, boolean target) {
         if (exp.length() == 1) {
