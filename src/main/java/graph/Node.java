@@ -11,10 +11,20 @@ public class Node {
     List<Link> links = new ArrayList<>();
     List<Link> outgoing = new ArrayList<>();
 
+    // not required. added for certain problems
+    Object data;
+
+    public List<Link> getIncoming(){
+        List<Link> incoming = new ArrayList<>(links);
+        incoming.removeAll(outgoing);
+        return incoming;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
                 "id=" + id +
+                "data=" + ((data == null) ? "" : data) +
                 ", inDegree=" + inDegree +
                 ", outDegree=" + outDegree +
                 ", links=" + links.stream().map(l -> l.id).collect(Collectors.toList()) +

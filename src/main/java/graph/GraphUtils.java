@@ -16,6 +16,7 @@ public class GraphUtils {
         for (Node src : graph.nodes.values()) {
             Node target = new Node();
             target.id = src.id;
+            target.data = src.data;
             target.inDegree = src.inDegree;
             target.outDegree = src.outDegree;
             nodeMapping.put(src, target);
