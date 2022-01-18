@@ -8,10 +8,8 @@ public class Problem_MaxXor0Sections {
         // holds the max valid (xor == 0) sections count when last section ends on i;
         int[] dp = new int[input.length];
 
-        // xorSUm[i] means the xor sum ending at i
-        int[] xorSum = new int[input.length];
-        xorSum[0] = 0;
         Map<Integer, Integer> lastIndexOfXorSum = new HashMap<>();
+        int currentXorSum = 0;
 
         for (int i = 0; i < input.length; i++) {
             // 2 cases:
@@ -21,7 +19,7 @@ public class Problem_MaxXor0Sections {
             // we want to find the beginning of this section
             // we use a cumulative xor sum array to help
 
-            int currentXorSum = i == 0 ? input[i] : xorSum[i - 1] ^ input[i];
+            currentXorSum = i == 0 ? input[i] : currentXorSum ^ input[i];
             if (i == 0) {
                 dp[i] = input[0] == 0 ? 1 : 0;
             } else {
@@ -45,8 +43,7 @@ public class Problem_MaxXor0Sections {
                     dp[i] = Math.max(dp[i - 1], dp[lastIndexOfXorSum.get(currentXorSum)] + 1);
                 }
             }
-            xorSum[i] = currentXorSum;
-            lastIndexOfXorSum.put(xorSum[i], i);
+            lastIndexOfXorSum.put(currentXorSum, i);
         }
 
         return dp[input.length - 1];
@@ -57,8 +54,8 @@ public class Problem_MaxXor0Sections {
         System.out.println(p.find(new int[]{3, 2, 1, 0, 1, 0, 2, 0, 3, 2, 1, 0, 4, 0}));
         System.out.println(p.find(new int[]{0}));
         System.out.println(p.find(new int[]{1}));
-        System.out.println(p.find(new int[]{1,2,3}));
-        System.out.println(p.find(new int[]{0,0}));
-        System.out.println(p.find(new int[]{4,1,2,3}));
+        System.out.println(p.find(new int[]{1, 2, 3}));
+        System.out.println(p.find(new int[]{0, 0}));
+        System.out.println(p.find(new int[]{4, 1, 2, 3}));
     }
 }
