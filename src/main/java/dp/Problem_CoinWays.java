@@ -14,6 +14,10 @@ public class Problem_CoinWays {
     }
 
     public int induction(int[] coinValues, int targetBalance) {
+        return dp(coinValues, targetBalance)[targetBalance];
+    }
+
+    public int[] dp(int[] coinValues, int targetBalance) {
         int[] memo = new int[targetBalance + 1];
         int[] temp = new int[targetBalance + 1];
         for (int index = coinValues.length; index > -1; index--) {
@@ -22,7 +26,7 @@ public class Problem_CoinWays {
                     temp[balance] = balance == 0 ? 1 : 0;
                 } else {
                     temp[balance] = memo[balance];
-                    // convex hull optimization
+                    // learn more about convex hull optimization
                     if (balance >= coinValues[index]) {
                         temp[balance] += temp[balance - coinValues[index]];
                     }
@@ -31,7 +35,7 @@ public class Problem_CoinWays {
             memo = temp;
             temp = new int[targetBalance + 1];
         }
-        return memo[targetBalance];
+        return memo;
     }
 
     public static void main(String[] args) {
