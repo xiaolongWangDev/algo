@@ -17,7 +17,7 @@ public class IntegerValueOf {
             }
             valHolder = 10 * valHolder - digit;
         }
-//        if (valHolder == Integer.MIN_VALUE && !isNeg) throw new IllegalArgumentException();
+        if (valHolder == Integer.MIN_VALUE && !isNeg) throw new IllegalArgumentException();
         return isNeg ? valHolder : -valHolder;
     }
 
