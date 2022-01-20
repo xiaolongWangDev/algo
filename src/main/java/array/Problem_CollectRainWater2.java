@@ -28,8 +28,9 @@ public class Problem_CollectRainWater2 {
     /*
     the key observation:
     L .......... R
-    when the value of R is smaller than that of L,
+    when the value of R is larger than that of L,
     Changing R's value won't get you a better result. So shrinking the R side bound is unnecessary.
+    and vice versa.
     the follow algorithm does a good job pruning those branches
      */
     public int collect2(int[] heights) {
