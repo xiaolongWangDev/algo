@@ -50,7 +50,7 @@ public class Problem_LongestTargetSum {
                     rResult = i;
                 }
             }
-            leadingSumIndex.put(leadingSum, i);
+            leadingSumIndex.putIfAbsent(leadingSum, i);
         }
 
         return lResult == null ? null : List.of(lResult, rResult);
