@@ -19,7 +19,7 @@ public class Problem_TreeMaxWeight extends TreeTraversal {
         @Override
         public String toString() {
             return "Info{" +
-                    ", maxSum=" + maxSum +
+                    "maxSum=" + maxSum +
                     ", values=" + values +
                     '}';
         }
