@@ -4,7 +4,7 @@ package tree;
 import static tree.TreeUtils.printTree;
 import static tree.TreeUtils.testData;
 
-public class ProblemLargestBstSubtree {
+public class Problem_LargestBstSubtree {
     private static class Info {
         TreeUtils.Node bstRoot;
         int bstNodeCounts;
@@ -47,7 +47,7 @@ public class ProblemLargestBstSubtree {
     }
 
     public static void main(String[] args) {
-        ProblemLargestBstSubtree p = new ProblemLargestBstSubtree();
+        Problem_LargestBstSubtree p = new Problem_LargestBstSubtree();
         int height = 4;
         while (true) {
             TreeUtils.Node testData = testData(0, 100, height);
