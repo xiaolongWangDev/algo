@@ -54,10 +54,27 @@ public class Problem_LongestIncreasingSubSequence {
         return minEnds.get(minEnds.size() - 1);
     }
 
+    public Integer betterFindLen(int[] input) {
+        // each index means the LIS of length i ends with a number minEnds[i]
+        List<Integer> minEnds = new ArrayList<>();
+        BinarySearch search = new BinarySearch();
+        for (int value : input) {
+            Integer targetIndex = search.minGreaterThan(minEnds, value, 0, minEnds.size() - 1, o -> o);
+            if (targetIndex == null) {
+                minEnds.add(value);
+            } else {
+                minEnds.set(targetIndex, value);
+            }
+        }
+
+        return minEnds.size();
+    }
+
     public static void main(String[] args) {
         Problem_LongestIncreasingSubSequence p = new Problem_LongestIncreasingSubSequence();
         int[] input = new int[]{10, 1, 7, 3, 6, 4, 5, 2};
         System.out.println(p.naiveFind(input));
         System.out.println(p.betterFind(input));
+        System.out.println(p.betterFindLen(input));
     }
 }

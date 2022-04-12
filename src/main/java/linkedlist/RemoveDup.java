@@ -2,6 +2,7 @@ package linkedlist;
 
 import static linkedlist.LinkedListUtils.*;
 
+// leetcode 82
 public class RemoveDup {
 
     public Node run(Node head) {
