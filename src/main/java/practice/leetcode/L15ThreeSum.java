@@ -4,6 +4,7 @@ import java.util.*;
 
 import static practice.leetcode.L1TwoSum.orderedTwoSumAllUniqueValues;
 
+// O(n^2)
 public class L15ThreeSum {
 
     public List<List<Integer>> threeSum(int[] nums) {

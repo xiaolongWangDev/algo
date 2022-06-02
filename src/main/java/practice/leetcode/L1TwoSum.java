@@ -2,11 +2,10 @@ package practice.leetcode;
 
 import java.util.*;
 
-/**
- * use hashmap to keep the remainder
- */
+// O(n)
 public class L1TwoSum {
     /**
+     * use hashmap to keep the remainder
      * requirement is easy. only find 1 pair
      */
     public static int[] solve(int[] nums, int target) {
