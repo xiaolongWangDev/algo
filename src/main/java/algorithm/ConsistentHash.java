@@ -8,6 +8,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.TreeMap;
 import java.util.UUID;
 
+/**
+ * Requirements:
+ * 1. requests should be evenly dispatched to added servers
+ * 2. requests should be mapped to the same host across restarts
+ * 3. adding/removing hosts should not cause uneven dispatching, although requests might be dispatched to different host
+ */
 public class ConsistentHash {
 
     public ConsistentHash() throws NoSuchAlgorithmException {
