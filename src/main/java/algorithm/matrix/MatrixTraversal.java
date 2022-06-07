@@ -1,8 +1,8 @@
-package tobeorganized.matrix;
+package algorithm.matrix;
 
 import java.util.function.Consumer;
 
-public class Traverse {
+public class MatrixTraversal {
     public void spiralOrder(int[][] matrix, Consumer<Integer> consumer) {
         int n = matrix.length;
         if (n == 0) return;
@@ -82,7 +82,7 @@ public class Traverse {
     }
 
     public static void main(String[] args) {
-        Traverse algo = new Traverse();
+        MatrixTraversal algo = new MatrixTraversal();
         int N = 5;
         int M = 6;
         int[][] matrix = new int[N][M];
