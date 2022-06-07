@@ -31,7 +31,10 @@ public class L4FindMedianSortedArrays {
         return (nums1.length + nums2.length) % 2 == 0 ? (prevVal + currentVal) / 2.0 : currentVal;
     }
 
-
+    // https://www.youtube.com/watch?v=q6IEA26hvXc
+    // take one of the array, try to find a split point that satisfies the "cross-check condition". The find is using
+    // a binary search, the trying should include the -1 and length(arr) indexes to cover the cases where either none
+    // or all the elements of that array is/are included in the left half of the result array
     public static double findMedianSortedArraysBinarySearch(int[] num1, int[] num2) {
         int l = 0;
         int[] a = num1.length > num2.length ? num2 : num1;
