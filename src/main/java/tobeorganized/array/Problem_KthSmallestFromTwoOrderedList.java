@@ -59,6 +59,40 @@ public class Problem_KthSmallestFromTwoOrderedList {
         }
     }
 
+    public static int binarySearchVersion(int[] nums1, int[] nums2, int kth) {
+        int l = 0;
+        int r = nums1.length - 1;
+
+        while (true) {
+            int i = r == -1 ? -1 : l + (r - l) / 2;
+            int j = kth - (i + 1) - 1;
+
+            Integer num1TakenLast = i == -1 ? null : nums1[i];
+            Integer num1NotTakenFirst = i + 1 == nums1.length ? null : nums1[i + 1];
+            Integer num2TakenLast = j == -1 ? null : nums2[j];
+            Integer num2NotTakenFirst = j + 1 == nums2.length ? null : nums2[j + 1];
+
+            if (lte(num1TakenLast, num2NotTakenFirst) && lte(num2TakenLast, num1NotTakenFirst)) {
+                return num1TakenLast != null && num2TakenLast != null ?
+                        Math.max(num1TakenLast, num2TakenLast) :
+                        num1TakenLast != null ?
+                                num1TakenLast :
+                                num2TakenLast;
+            } else if (!lte(num2TakenLast, num1NotTakenFirst)) {
+                l = i + 1;
+            } else {
+                r = i - 1;
+            }
+        }
+    }
+
+    private static boolean lte(Integer a, Integer b) {
+        if (a == null || b == null) {
+            return true;
+        }
+        return a <= b;
+    }
+
     public static void main(String[] args) {
         Problem_KthSmallestFromTwoOrderedList p = new Problem_KthSmallestFromTwoOrderedList();
         int[] a = new int[]{1, 2, 3, 4};
@@ -73,7 +107,7 @@ public class Problem_KthSmallestFromTwoOrderedList {
 
         int[] s = new int[]{1, 10, 42, 79, 80, 1000};
         int[] l = new int[]{23, 24, 56, 62, 90, 100, 200, 400, 1002, 2002};
-        for(int i = 1; i <= s.length + l.length; i++) {
+        for (int i = 1; i <= s.length + l.length; i++) {
             System.out.println(p.kth(s, l, i));
 //            System.out.println(p.kth(l, s, i));
         }
