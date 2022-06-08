@@ -2,7 +2,7 @@ package algorithm.dp;
 
 import java.util.Arrays;
 
-public class ZeroOneBackpack {
+public class ZeroOneKnapsack {
     private static class Item {
         int value;
         int weight;
