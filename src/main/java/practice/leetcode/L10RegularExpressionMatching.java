@@ -1,7 +1,5 @@
 package practice.leetcode;
 
-import java.util.Arrays;
-
 public class L10RegularExpressionMatching {
 
 
@@ -88,6 +86,9 @@ public class L10RegularExpressionMatching {
      * 7 [false, false, false,  true, false,  true, false,  true, true, false, false]
      * 8 [false, false, false, false, false, false, false, false, true, false,  true]
      */
+
+    // be clear: ".*" match to any string, not just string of the same character of any length
+    // as a result f(i-a, j-b) has no aftereffect on f(i, j)
     public static void main(String[] args) {
         System.out.println(isMatch("aabbaccc", "a*.b*.*c.*"));
         System.out.println(bottomUp("aabbaccc", "a*.b*.*c.*"));
