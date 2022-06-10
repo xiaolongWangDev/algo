@@ -22,7 +22,7 @@ public class ZeroOneKnapsack {
             // this is because the new value only depends on the value on its left
             // i.e. f(i, j) depends on f(i-1,j) and f(i-1, j - weight)
 //            int[] temp = new int[capacity + 1];
-            for (int j = capacity; j > -1; j--) {
+            for (int j = capacity; j >= item.weight; j--) {
                 dp[j] = Math.max(j - item.weight >= 0 ? dp[j - item.weight] + item.value : 0, dp[j]);
 //                temp[j] = Math.max(j - item.weight >= 0 ? dp[j - item.weight] + item.value : 0, dp[j]);
             }
