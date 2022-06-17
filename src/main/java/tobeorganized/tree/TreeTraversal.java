@@ -3,28 +3,28 @@ package tobeorganized.tree;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class TreeTraversal {
 
     private static final Queue<Way> ALL_WAYS = new ArrayDeque<>(List.of(Way.LEFT, Way.RIGHT));
 
     // recursive fashion
-    public void recursiveInOrder(Node node, Consumer<Node> resultCollector) {
+    public void recursiveInOrder(TreeNode node, Consumer<TreeNode> resultCollector) {
         if (node == null) return;
         recursiveInOrder(node.left, resultCollector);
         resultCollector.accept(node);
         recursiveInOrder(node.right, resultCollector);
     }
 
-    public void recursivePreOrder(Node node, Consumer<Node> resultCollector) {
+    public void recursivePreOrder(TreeNode node, Consumer<TreeNode> resultCollector) {
         if (node == null) return;
         resultCollector.accept(node);
         recursivePreOrder(node.left, resultCollector);
         recursivePreOrder(node.right, resultCollector);
     }
 
-    public void recursivePostOrder(Node node, Consumer<Node> resultCollector) {
+    public void recursivePostOrder(TreeNode node, Consumer<TreeNode> resultCollector) {
         if (node == null) return;
         recursivePostOrder(node.left, resultCollector);
         recursivePostOrder(node.right, resultCollector);
@@ -46,17 +46,17 @@ public class TreeTraversal {
     }
 
     private static class Context {
-        Node node;
+        TreeNode node;
         Queue<Way> ways;
 
-        public Context(Node node, Queue<Way> ways) {
+        public Context(TreeNode node, Queue<Way> ways) {
             this.node = node;
             this.ways = ways;
         }
     }
 
-    public void backtrackBased(Node root, Consumer<Node> resultCollector, IterationOrder order) {
-        Node cur = root;
+    public void backtrackBased(TreeNode root, Consumer<TreeNode> resultCollector, IterationOrder order) {
+        TreeNode cur = root;
         Queue<Way> ways = new ArrayDeque<>(ALL_WAYS);
         Stack<Context> contextStack = new Stack<>();
         while (true) {
@@ -123,9 +123,9 @@ public class TreeTraversal {
         }
     }
 
-    public void shortPreOrder(Node root, Consumer<Node> resultCollector) {
-        Node cur = root;
-        Stack<Node> stack = new Stack<>();
+    public void shortPreOrder(TreeNode root, Consumer<TreeNode> resultCollector) {
+        TreeNode cur = root;
+        Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || cur != null) {
             if (cur != null) {
                 resultCollector.accept(cur);
@@ -136,10 +136,10 @@ public class TreeTraversal {
         }
     }
 
-    public void shortPostOrder(Node root, Consumer<Node> resultCollector) {
-        Node cur = root;
-        Stack<Node> reverseStack = new Stack<>();
-        Stack<Node> stack = new Stack<>();
+    public void shortPostOrder(TreeNode root, Consumer<TreeNode> resultCollector) {
+        TreeNode cur = root;
+        Stack<TreeNode> reverseStack = new Stack<>();
+        Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || cur != null) {
             if (cur != null) {
                 reverseStack.add(cur);
@@ -154,9 +154,9 @@ public class TreeTraversal {
     }
 
 
-    public void shortInOrder(Node root, Consumer<Node> resultCollector) {
-        Node cur = root;
-        Stack<Node> stack = new Stack<>();
+    public void shortInOrder(TreeNode root, Consumer<TreeNode> resultCollector) {
+        TreeNode cur = root;
+        Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || cur != null) {
             if (cur != null) {
                 stack.push(cur);
@@ -169,21 +169,21 @@ public class TreeTraversal {
         }
     }
 
-    public void breadthFirst(Node root, Consumer<Node> resultCollector) {
-        Queue<Node> queue = new ArrayDeque<>();
+    public void breadthFirst(TreeNode root, Consumer<TreeNode> resultCollector) {
+        Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            Node cur = queue.poll();
+            TreeNode cur = queue.poll();
             resultCollector.accept(cur);
             if (cur.left != null) queue.add(cur.left);
             if (cur.right != null) queue.add(cur.right);
         }
     }
 
-    public void morris(Node root, Consumer<Node> resultCollector, IterationOrder order) {
+    public void morris(TreeNode root, Consumer<TreeNode> resultCollector, IterationOrder order) {
         if (root == null) return;
-        Node cur = root;
-        Node rightmostInLeftTree;
+        TreeNode cur = root;
+        TreeNode rightmostInLeftTree;
         while (cur != null) {
             if (cur.left != null) {
                 rightmostInLeftTree = cur.left;
@@ -224,9 +224,9 @@ public class TreeTraversal {
         }
     }
 
-    private void collectRightEdgeBottomUp(Node root, Consumer<Node> resultCollector) {
-        Node bottomNode = reverseRightEdge(root);
-        Node cur = bottomNode;
+    private void collectRightEdgeBottomUp(TreeNode root, Consumer<TreeNode> resultCollector) {
+        TreeNode bottomNode = reverseRightEdge(root);
+        TreeNode cur = bottomNode;
         while (cur != null) {
             resultCollector.accept(cur);
             cur = cur.right;
@@ -234,11 +234,11 @@ public class TreeTraversal {
         reverseRightEdge(bottomNode);
     }
 
-    private Node reverseRightEdge(Node root) {
-        Node cur = root;
-        Node pre = null;
+    private TreeNode reverseRightEdge(TreeNode root) {
+        TreeNode cur = root;
+        TreeNode pre = null;
         while (cur != null) {
-            Node temp = cur.right;
+            TreeNode temp = cur.right;
             cur.right = pre;
             pre = cur;
             cur = temp;
@@ -248,16 +248,16 @@ public class TreeTraversal {
 
     // some handy utils for others to use
     public static class NthNodeResult {
-        Node node;
+        TreeNode node;
         int count;
 
-        public NthNodeResult(Node node, int count) {
+        public NthNodeResult(TreeNode node, int count) {
             this.node = node;
             this.count = count;
         }
     }
 
-    public Node getRandomNode(Node root) {
+    public TreeNode getRandomNode(TreeNode root) {
         Random random = new Random();
         int stopAt = 1 + random.nextInt(count(root));
 //        System.out.println(stopAt);
@@ -272,7 +272,7 @@ public class TreeTraversal {
         }
     }
 
-    private int count(Node root) {
+    private int count(TreeNode root) {
         Counter counter = new Counter();
         shortInOrder(root, node -> counter.add());
         return counter.count;
@@ -282,7 +282,7 @@ public class TreeTraversal {
      * this finds the nth node in the tree in in-order.
      * it's more of a practice of using divide and conquer, so it might not be the optimal way of doing this
      */
-    public NthNodeResult nthNodeInOrder(Node node, int n) {
+    public NthNodeResult nthNodeInOrder(TreeNode node, int n) {
         if (node == null) {
             return new NthNodeResult(null, 0);
         }
@@ -304,14 +304,14 @@ public class TreeTraversal {
         int min = 0;
         int max = 100;
         int height = 10;
-        Node testDataRoot = testData(min, max, height);
+        TreeNode testDataRoot = testData(min, max, height);
 //        printTree(testDataRoot, height);
         TreeTraversal treeTraversal = new TreeTraversal();
         System.out.println();
-        List<Node> result = new ArrayList<>();
+        List<TreeNode> result = new ArrayList<>();
         treeTraversal.morris(testDataRoot, result::add, IterationOrder.PRE);
 //        printOrder(result);
-        List<Node> expected = new ArrayList<>();
+        List<TreeNode> expected = new ArrayList<>();
         treeTraversal.shortPreOrder(testDataRoot, expected::add);
         compareList(expected, result);
 
@@ -331,50 +331,50 @@ public class TreeTraversal {
 
     }
 
-    private static void myOldTests(TreeTraversal treeTraversal, Node testDataRoot) {
-        List<Node> inOrder = new ArrayList<>();
+    private static void myOldTests(TreeTraversal treeTraversal, TreeNode testDataRoot) {
+        List<TreeNode> inOrder = new ArrayList<>();
         treeTraversal.recursiveInOrder(testDataRoot, inOrder::add);
 //        printOrder(inOrder);
-        List<Node> inOrder2 = new ArrayList<>();
+        List<TreeNode> inOrder2 = new ArrayList<>();
         treeTraversal.backtrackBased(testDataRoot, inOrder2::add, IterationOrder.IN);
 //        printOrder(inOrder2);
-        List<Node> inOrder3 = new ArrayList<>();
+        List<TreeNode> inOrder3 = new ArrayList<>();
         treeTraversal.shortInOrder(testDataRoot, inOrder3::add);
 //        printOrder(inOrder3);
         compareList(inOrder, inOrder2);
         compareList(inOrder, inOrder3);
 
-        List<Node> preOrder = new ArrayList<>();
+        List<TreeNode> preOrder = new ArrayList<>();
         treeTraversal.recursivePreOrder(testDataRoot, preOrder::add);
 //        printOrder(preOrder);
-        List<Node> preOrder2 = new ArrayList<>();
+        List<TreeNode> preOrder2 = new ArrayList<>();
         treeTraversal.backtrackBased(testDataRoot, preOrder2::add, IterationOrder.PRE);
 //        printOrder(preOrder2);
-        List<Node> preOrder3 = new ArrayList<>();
+        List<TreeNode> preOrder3 = new ArrayList<>();
         treeTraversal.shortPreOrder(testDataRoot, preOrder3::add);
 //        printOrder(preOrder3);
         compareList(preOrder, preOrder2);
         compareList(preOrder, preOrder3);
 
 
-        List<Node> postOrder = new ArrayList<>();
+        List<TreeNode> postOrder = new ArrayList<>();
         treeTraversal.recursivePostOrder(testDataRoot, postOrder::add);
 //        printOrder(postOrder);
-        List<Node> postOrder2 = new ArrayList<>();
+        List<TreeNode> postOrder2 = new ArrayList<>();
         treeTraversal.backtrackBased(testDataRoot, postOrder2::add, IterationOrder.POST);
 //        printOrder(postOrder2);
-        List<Node> postOrder3 = new ArrayList<>();
+        List<TreeNode> postOrder3 = new ArrayList<>();
         treeTraversal.shortPostOrder(testDataRoot, postOrder3::add);
 //        printOrder(postOrder3);
         compareList(postOrder, postOrder2);
         compareList(postOrder, postOrder3);
 
-        List<Node> breadthFirstOrder = new ArrayList<>();
+        List<TreeNode> breadthFirstOrder = new ArrayList<>();
         treeTraversal.breadthFirst(testDataRoot, breadthFirstOrder::add);
 //        printOrder(breadthFirstOrder);
     }
 
-    private static void compareList(List<Node> target, List<Node> real) {
+    private static void compareList(List<TreeNode> target, List<TreeNode> real) {
         if (target.size() != real.size()) {
             throw new RuntimeException("Not the same size");
         }
@@ -385,7 +385,7 @@ public class TreeTraversal {
         }
     }
 
-    private static void printOrder(List<Node> nodes) {
+    private static void printOrder(List<TreeNode> nodes) {
         nodes.forEach(o -> System.out.printf("%4d", o.value));
         System.out.println();
     }

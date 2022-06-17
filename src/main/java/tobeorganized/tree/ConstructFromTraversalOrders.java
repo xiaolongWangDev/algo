@@ -3,7 +3,7 @@ package tobeorganized.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class ConstructFromTraversalOrders {
     // no duplicated value should exist
@@ -47,9 +47,9 @@ public class ConstructFromTraversalOrders {
     }
 
     // no duplicated value should exist
-    public TreeUtils.Node constructTree(Integer[] preOrderInput, Integer[] inOrderInput,
-                                        int preL, int preR,
-                                        int inL, int inR) {
+    public TreeNode constructTree(Integer[] preOrderInput, Integer[] inOrderInput,
+                                  int preL, int preR,
+                                  int inL, int inR) {
         if (preOrderInput.length != inOrderInput.length)
             throw new IllegalArgumentException();
 
@@ -60,7 +60,7 @@ public class ConstructFromTraversalOrders {
             return null;
         }
 
-        TreeUtils.Node node = new TreeUtils.Node();
+        TreeNode node = new TreeNode();
         node.value = preOrderInput[preL];
         if (preL == preR) {
             return node;
@@ -74,11 +74,11 @@ public class ConstructFromTraversalOrders {
             leftTreeSize++;
         }
 
-        TreeUtils.Node leftChild = constructTree(preOrderInput, inOrderInput,
+        TreeNode leftChild = constructTree(preOrderInput, inOrderInput,
                 preL + 1, preL + leftTreeSize,
                 inL, inL + leftTreeSize - 1
         );
-        TreeUtils.Node rightChild = constructTree(preOrderInput, inOrderInput,
+        TreeNode rightChild = constructTree(preOrderInput, inOrderInput,
                 preL + leftTreeSize + 1, preR,
                 inL + leftTreeSize + 1, inR
         );
@@ -91,7 +91,7 @@ public class ConstructFromTraversalOrders {
         int min = 0;
         int max = 1000;
         int height = 4;
-        TreeUtils.Node testDataRoot = testData(min, max, height);
+        TreeNode testDataRoot = testData(min, max, height);
         printTree(testDataRoot, height);
         TreeTraversal treeTraversal = new TreeTraversal();
         List<Integer> preOrder = new ArrayList<>();
@@ -113,7 +113,7 @@ public class ConstructFromTraversalOrders {
         }
         System.out.println();
 
-        TreeUtils.Node constructed = algo.constructTree(preOrder.toArray(Integer[]::new), inOrder.toArray(Integer[]::new),
+        TreeNode constructed = algo.constructTree(preOrder.toArray(Integer[]::new), inOrder.toArray(Integer[]::new),
                 0, preOrder.size() - 1, 0, preOrder.size() - 1);
 
         printTree(constructed, maxHeight(constructed));

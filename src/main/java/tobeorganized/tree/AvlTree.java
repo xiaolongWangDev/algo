@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class AvlTree extends BalanceTree {
 
@@ -16,20 +16,20 @@ public class AvlTree extends BalanceTree {
         updateNodeHeight(root);
     }
 
-    public Node add(int value) {
-        Node node = super.add(value);
+    public TreeNode add(int value) {
+        TreeNode node = super.add(value);
         node.height = 1;
         increaseParentHeight(node);
         return node;
     }
 
-    public int updateNodeHeight(Node node) {
+    public int updateNodeHeight(TreeNode node) {
         if (node == null) return 0;
         node.height = Math.max(updateNodeHeight(node.left), updateNodeHeight(node.right)) + 1;
         return node.height;
     }
 
-    public void increaseParentHeight(Node node) {
+    public void increaseParentHeight(TreeNode node) {
         while (node.parent != null) {
             node = node.parent;
             node.height++;

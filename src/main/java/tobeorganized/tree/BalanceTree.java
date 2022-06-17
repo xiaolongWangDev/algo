@@ -1,19 +1,19 @@
 package tobeorganized.tree;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public abstract class BalanceTree {
-    public Node root;
+    public TreeNode root;
 
 //    abstract void balance(Node node);
 
-    public Node add(int value) {
-        Node node = new Node();
+    public TreeNode add(int value) {
+        TreeNode node = new TreeNode();
         node.value = value;
         if (root == null) {
             root = node;
         } else {
-            Node cur = root;
+            TreeNode cur = root;
             while (true) {
                 if (value < cur.value) {
                     if (cur.left == null) {
@@ -39,11 +39,11 @@ public abstract class BalanceTree {
         return node;
     }
 
-    public Node rotateLeft(Node node) {
+    public TreeNode rotateLeft(TreeNode node) {
         if (node.right != null) {
-            Node parent = node.parent;
-            Node oldRightNode = node.right;
-            Node oldRightLeftNode = oldRightNode.left;
+            TreeNode parent = node.parent;
+            TreeNode oldRightNode = node.right;
+            TreeNode oldRightLeftNode = oldRightNode.left;
             if (parent != null) {
                 if (parent.left == node) {
                     parent.left = oldRightNode;
@@ -63,11 +63,11 @@ public abstract class BalanceTree {
         return node;
     }
 
-    public Node rotateRight(Node node) {
+    public TreeNode rotateRight(TreeNode node) {
         if (node.left != null) {
-            Node parent = node.parent;
-            Node oldLeftNode = node.left;
-            Node oldLeftRightNode = oldLeftNode.right;
+            TreeNode parent = node.parent;
+            TreeNode oldLeftNode = node.left;
+            TreeNode oldLeftRightNode = oldLeftNode.right;
             if (parent != null) {
                 if (parent.left == node) {
                     parent.left = oldLeftNode;

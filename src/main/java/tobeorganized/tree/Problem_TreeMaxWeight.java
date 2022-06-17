@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class Problem_TreeMaxWeight extends TreeTraversal {
     private static class Info {
@@ -25,7 +25,7 @@ public class Problem_TreeMaxWeight extends TreeTraversal {
         }
     }
 
-    public Info maxWeight(Node root, Consumer<Info> maxKeeper) {
+    public Info maxWeight(TreeNode root, Consumer<Info> maxKeeper) {
         if (root == null) {
             return new Info(0, List.of());
         }
@@ -60,7 +60,7 @@ public class Problem_TreeMaxWeight extends TreeTraversal {
     public static void main(String[] args) {
         int height = 4;
         Problem_TreeMaxWeight p = new Problem_TreeMaxWeight();
-        Node testData = testData(-100, 100, height);
+        TreeNode testData = testData(-100, 100, height);
         printTree(testData, height);
         MaxKeeper maxKeeper = new MaxKeeper();
         p.maxWeight(testData, maxKeeper::updateMax);

@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class Serialization extends TreeTraversal {
 
-    public String serialize(Node node) {
+    public String serialize(TreeNode node) {
         if (node == null) {
             return "#";
         }
@@ -17,7 +17,7 @@ public class Serialization extends TreeTraversal {
                 serialize(node.right);
     }
 
-    public Node deserialize(String str) {
+    public TreeNode deserialize(String str) {
         if (str == null || str.isEmpty()) {
             return null;
         }
@@ -25,12 +25,12 @@ public class Serialization extends TreeTraversal {
         return recursiveDeserializePreOrder(parts);
     }
 
-    public Node recursiveDeserializePreOrder(Queue<String> parts) {
+    public TreeNode recursiveDeserializePreOrder(Queue<String> parts) {
         String part = parts.poll();
         if ("#".equals(part)) {
             return null;
         }
-        Node node = new Node();
+        TreeNode node = new TreeNode();
         node.value = Integer.parseInt(part);
         node.left = recursiveDeserializePreOrder(parts);
         node.right = recursiveDeserializePreOrder(parts);
@@ -43,14 +43,14 @@ public class Serialization extends TreeTraversal {
         int max = 100;
         int height = 4;
         // build a random tree of height
-        Node testDataRoot = testData(min, max, height);
+        TreeNode testDataRoot = testData(min, max, height);
         printTree(testDataRoot, height);
         Serialization algo = new Serialization();
 
         // pre-order
         String serialized = algo.serialize(testDataRoot);
         System.out.println(serialized);
-        Node deserialized = algo.deserialize(serialized);
+        TreeNode deserialized = algo.deserialize(serialized);
         printTree(deserialized, maxHeight(deserialized));
 
     }

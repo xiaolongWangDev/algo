@@ -1,6 +1,6 @@
 package tobeorganized.tree;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class Problem_TreeMaxDistance extends TreeTraversal {
 
@@ -19,7 +19,7 @@ public class Problem_TreeMaxDistance extends TreeTraversal {
         }
     }
 
-    public Info maxDistance(Node root) {
+    public Info maxDistance(TreeNode root) {
         if (root == null) {
             return new Info(0, 0);
         }
@@ -37,7 +37,7 @@ public class Problem_TreeMaxDistance extends TreeTraversal {
     public static void main(String[] args) {
         int height = 4;
         Problem_TreeMaxDistance algo = new Problem_TreeMaxDistance();
-        Node testData = testData(0, 100, height);
+        TreeNode testData = testData(0, 100, height);
         printTree(testData, height);
         System.out.println(algo.maxDistance(testData));
     }

@@ -1,9 +1,9 @@
 package tobeorganized.tree;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class Problem_CompleteTreeNodeCount {
-    public int count(TreeUtils.Node node) {
+    public int count(TreeNode node) {
         int leftTreeLeftHeight = countLeftmostHeight(node.left);
         int rightTreeLeftHeight = countLeftmostHeight(node.right);
 
@@ -21,7 +21,7 @@ public class Problem_CompleteTreeNodeCount {
         return sum;
     }
 
-    private int countLeftmostHeight(TreeUtils.Node node) {
+    private int countLeftmostHeight(TreeNode node) {
         int i = 0;
         while (node != null) {
             node = node.left;
@@ -41,7 +41,7 @@ public class Problem_CompleteTreeNodeCount {
         ConstructFromTraversalOrders construct = new ConstructFromTraversalOrders();
         Integer[] preOrder = new Integer[]{1, 2, 4, 8, 16, 17, 9, 18, 19, 5, 10, 20, 11, 3, 6, 12, 13, 7, 14, 15};
         Integer[] inOrder = new Integer[]{16, 8, 17, 4, 18, 9, 19, 2, 20, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15};
-        TreeUtils.Node root = construct.constructTree(preOrder, inOrder, 0, preOrder.length - 1, 0, inOrder.length - 1);
+        TreeNode root = construct.constructTree(preOrder, inOrder, 0, preOrder.length - 1, 0, inOrder.length - 1);
         printTree(root, maxHeight(root));
 
         Problem_CompleteTreeNodeCount p = new Problem_CompleteTreeNodeCount();

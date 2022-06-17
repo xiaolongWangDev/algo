@@ -1,6 +1,6 @@
 package tobeorganized.tree;
 
-import static tobeorganized.tree.TreeUtils.*;
+import static helper.TreeUtils.*;
 
 public class TreeCheck extends TreeTraversal {
 
@@ -8,7 +8,7 @@ public class TreeCheck extends TreeTraversal {
         Integer prevValue;
         boolean isBst = true;
 
-        public void check(Node node) {
+        public void check(TreeNode node) {
             if (isBst && prevValue != null) {
                 isBst = prevValue < node.value;
             }
@@ -20,7 +20,7 @@ public class TreeCheck extends TreeTraversal {
         boolean onlyAllLeaf;
         boolean isCbt = true;
 
-        public void check(Node node) {
+        public void check(TreeNode node) {
             if (isCbt) {
                 if (onlyAllLeaf && (node.left != null || node.right != null)) {
                     isCbt = false;
@@ -35,13 +35,13 @@ public class TreeCheck extends TreeTraversal {
         }
     }
 
-    public boolean isBst(Node root) {
+    public boolean isBst(TreeNode root) {
         BstChecker checker = new BstChecker();
         shortInOrder(root, checker::check);
         return checker.isBst;
     }
 
-    public boolean isCbt(Node root) {
+    public boolean isCbt(TreeNode root) {
         CbtChecker checker = new CbtChecker();
         breadthFirst(root, checker::check);
         return checker.isCbt;
@@ -62,7 +62,7 @@ public class TreeCheck extends TreeTraversal {
         }
     }
 
-    public BalanceInfo isBalanced(Node node) {
+    public BalanceInfo isBalanced(TreeNode node) {
         if (node.left != null && node.right != null) {
             BalanceInfo leftInfo = isBalanced(node.left);
             BalanceInfo rightInfo = isBalanced(node.right);
@@ -103,7 +103,7 @@ public class TreeCheck extends TreeTraversal {
         }
     }
 
-    public Dimension getDimension(Node node) {
+    public Dimension getDimension(TreeNode node) {
         if (node == null) {
             return new Dimension(0, 0);
         }
@@ -115,7 +115,7 @@ public class TreeCheck extends TreeTraversal {
         return new Dimension(newHeight, newWidth);
     }
 
-    public boolean isFull(Node root) {
+    public boolean isFull(TreeNode root) {
         Dimension dimension = getDimension(root);
         return dimension.width == (int) Math.pow(2, dimension.height - 1);
     }
@@ -124,7 +124,7 @@ public class TreeCheck extends TreeTraversal {
         int min = 0;
         int max = 100;
         int height = 3;
-        Node testDataRoot = testData(min, max, height);
+        TreeNode testDataRoot = testData(min, max, height);
         printTree(testDataRoot, height);
 
         TreeCheck treeCheck = new TreeCheck();

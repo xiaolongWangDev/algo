@@ -1,25 +1,27 @@
 package tobeorganized.tree;
 
+import helper.TreeUtils;
+
 import java.util.List;
 
-import static tobeorganized.tree.TreeUtils.printTree;
-import static tobeorganized.tree.TreeUtils.testData;
+import static helper.TreeUtils.printTree;
+import static helper.TreeUtils.testData;
 
 public class Problem_TreeToDoubleLinkedList {
-    public List<TreeUtils.Node> convert(TreeUtils.Node node) {
-        TreeUtils.Node head = node;
-        TreeUtils.Node tail = node;
+    public List<TreeUtils.TreeNode> convert(TreeUtils.TreeNode node) {
+        TreeUtils.TreeNode head = node;
+        TreeUtils.TreeNode tail = node;
         if (node.left != null) {
-            List<TreeUtils.Node> leftListHeadAndTail = convert(node.left);
+            List<TreeUtils.TreeNode> leftListHeadAndTail = convert(node.left);
             head = leftListHeadAndTail.get(0);
-            TreeUtils.Node leftTail = leftListHeadAndTail.get(1);
+            TreeUtils.TreeNode leftTail = leftListHeadAndTail.get(1);
             leftTail.right = node;
             node.left = leftTail;
         }
         if (node.right != null) {
-            List<TreeUtils.Node> rightListHeadAndTail = convert(node.right);
+            List<TreeUtils.TreeNode> rightListHeadAndTail = convert(node.right);
             tail = rightListHeadAndTail.get(1);
-            TreeUtils.Node rightHead = rightListHeadAndTail.get(0);
+            TreeUtils.TreeNode rightHead = rightListHeadAndTail.get(0);
             rightHead.left = node;
             node.right = rightHead;
         }
@@ -29,11 +31,11 @@ public class Problem_TreeToDoubleLinkedList {
     public static void main(String[] args) {
         Problem_TreeToDoubleLinkedList p = new Problem_TreeToDoubleLinkedList();
         int height = 4;
-        TreeUtils.Node testData = testData(0, 100, height);
+        TreeUtils.TreeNode testData = testData(0, 100, height);
         printTree(testData, height);
-        List<TreeUtils.Node> results = p.convert(testData);
-        TreeUtils.Node head = results.get(0);
-        TreeUtils.Node tail = results.get(1);
+        List<TreeUtils.TreeNode> results = p.convert(testData);
+        TreeUtils.TreeNode head = results.get(0);
+        TreeUtils.TreeNode tail = results.get(1);
         while (head != null) {
             System.out.printf("%3d", head.value);
             head = head.right;
