@@ -3,7 +3,7 @@ package tobeorganized.array;
 import java.util.ArrayList;
 import java.util.List;
 
-import static algorithm.BinarySearch.findFirstGreaterThanOrEqual;
+import static algorithm.ZonedBinarySearch.findFirstGreaterThanOrEqual;
 
 public class Problem_LongestIncreasingSubSequence {
 
