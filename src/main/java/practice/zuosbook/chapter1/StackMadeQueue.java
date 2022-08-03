@@ -6,11 +6,6 @@ import java.util.Stack;
 public class StackMadeQueue<T> {
     private final Stack<T> first = new Stack<>();
     private final Stack<T> second = new Stack<>();
-    private final Comparator<T> comparator;
-
-    public StackMadeQueue(Comparator<T> comparator) {
-        this.comparator = comparator;
-    }
 
     // move all elements from first to second
     private void firstToSecond() {
@@ -35,7 +30,7 @@ public class StackMadeQueue<T> {
     }
 
     public static void main(String[] args) {
-        StackMadeQueue<Integer> queue = new StackMadeQueue<>(Integer::compareTo);
+        StackMadeQueue<Integer> queue = new StackMadeQueue<>();
         queue.push(1);
         queue.push(2);
         assert 1 == queue.poll();
