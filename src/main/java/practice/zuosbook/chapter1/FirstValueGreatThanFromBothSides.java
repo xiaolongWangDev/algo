@@ -10,19 +10,21 @@ public class FirstValueGreatThanFromBothSides {
         int[][] result = new int[data.length][2];
         for (int i = 0; i < data.length; i++) {
             while (!ms.isEmpty() && data[ms.peek()] <= data[i]) {
-                int poppedIndex = ms.pop();
-                result[poppedIndex][0] = ms.isEmpty() ? -1 : ms.peek();
-                result[poppedIndex][1] = i;
+                setResult_(ms, result, i);
             }
             ms.push(i);
         }
 
         while (!ms.isEmpty()) {
-            int poppedIndex = ms.pop();
-            result[poppedIndex][0] = ms.isEmpty() ? -1 : ms.peek();
-            result[poppedIndex][1] = -1;
+            setResult_(ms, result, -1);
         }
         return result;
+    }
+
+    private static void setResult_(Stack<Integer> ms, int[][] result, int whoKickedMeOut) {
+        int poppedIndex = ms.pop();
+        result[poppedIndex][0] = ms.isEmpty() ? -1 : ms.peek();
+        result[poppedIndex][1] = whoKickedMeOut;
     }
 
     public static int[][] solve(int[] data) {
@@ -31,12 +33,7 @@ public class FirstValueGreatThanFromBothSides {
         int[][] result = new int[data.length][2];
         for (int i = 0; i < data.length; i++) {
             while (!ms.isEmpty() && data[ms.peek().peekLast()] < data[i]) {
-                LinkedList<Integer> poppedIndexes = ms.pop();
-                int prevIndex = ms.isEmpty() ? -1 : ms.peek().peekLast();
-                for (var poppedIndex : poppedIndexes) {
-                    result[poppedIndex][0] = prevIndex;
-                    result[poppedIndex][1] = i;
-                }
+                setResult(ms, result, i);
             }
             if (ms.isEmpty() || data[ms.peek().peekLast()] != data[i]) {
                 ms.push(new LinkedList<>());
@@ -45,14 +42,18 @@ public class FirstValueGreatThanFromBothSides {
         }
 
         while (!ms.isEmpty()) {
-            LinkedList<Integer> poppedIndexes = ms.pop();
-            int prevIndex = ms.isEmpty() ? -1 : ms.peek().peekLast();
-            for (var poppedIndex : poppedIndexes) {
-                result[poppedIndex][0] = prevIndex;
-                result[poppedIndex][1] = -1;
-            }
+            setResult(ms, result, -1);
         }
         return result;
+    }
+
+    private static void setResult(Stack<LinkedList<Integer>> ms, int[][] result, int whoKickedMeOut) {
+        LinkedList<Integer> poppedIndexes = ms.pop();
+        int prevIndex = ms.isEmpty() ? -1 : ms.peek().peekLast();
+        for (var poppedIndex : poppedIndexes) {
+            result[poppedIndex][0] = prevIndex;
+            result[poppedIndex][1] = whoKickedMeOut;
+        }
     }
 
     public static void main(String[] args) {
