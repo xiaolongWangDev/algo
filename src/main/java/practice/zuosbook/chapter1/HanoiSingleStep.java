@@ -1,10 +1,13 @@
 package practice.zuosbook.chapter1;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+
+// a valid hanoi tower of height is sitting on "from"
+// all block pieces have continuous id
+// so the bottom one has the same id as the block height
 public class HanoiSingleStep {
     static char L = 'L';
     static char M = 'M';
