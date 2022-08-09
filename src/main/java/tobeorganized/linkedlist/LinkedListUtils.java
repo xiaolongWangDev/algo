@@ -5,8 +5,8 @@ import java.util.*;
 public class LinkedListUtils {
 
     public static class Node {
-        int value;
-        Node next;
+        public int value;
+        public Node next;
     }
 
     public static class RandNode {
