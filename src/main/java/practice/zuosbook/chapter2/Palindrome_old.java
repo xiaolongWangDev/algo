@@ -1,4 +1,4 @@
-package tobeorganized.linkedlist;
+package practice.zuosbook.chapter2;
 
 import tobeorganized.linkedlist.LinkedListUtils.Node;
 
@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import static tobeorganized.linkedlist.LinkedListUtils.*;
 
-public class Palindrome {
+public class Palindrome_old {
 
     public Boolean isPalindromeUseStack(Node head) {
         int length = length(head);
@@ -71,7 +71,7 @@ public class Palindrome {
 
     public static void main(String[] args) {
         Node testData = generateTestData(new int[]{1, 2, 3, 4, 5});
-        Palindrome algo = new Palindrome();
+        Palindrome_old algo = new Palindrome_old();
         Function<Node, Boolean> method = algo::isPalindromeUseReverse;
 
         testData = reverse(testData);

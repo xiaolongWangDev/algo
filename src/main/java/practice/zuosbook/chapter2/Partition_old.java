@@ -1,8 +1,8 @@
-package tobeorganized.linkedlist;
+package practice.zuosbook.chapter2;
 
 import static tobeorganized.linkedlist.LinkedListUtils.*;
 
-public class Partition {
+public class Partition_old {
 
     public Node partition(Node head, int pivot) {
         Node lessThanHead = null;
@@ -73,7 +73,7 @@ public class Partition {
     public static void main(String[] args) {
         Node testData = generateTestData(300, 0, 10);
         print(testData);
-        Partition algo = new Partition();
+        Partition_old algo = new Partition_old();
         Node partitioned = algo.partition(testData, 5);
         print(partitioned);
     }
