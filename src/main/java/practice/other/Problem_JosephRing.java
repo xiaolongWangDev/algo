@@ -1,4 +1,4 @@
-package tobeorganized.array;
+package practice.other;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +18,11 @@ public class Problem_JosephRing {
         return solve(0, killIndex, n);
     }
 
-    public Info solve(int round, int[] killIndex, int total) {
-        int nPeople = total - round;
+    public Info solve(int round, int[] killIndex, int TOTAL) {
+        int nPeople = TOTAL - round;
         if (nPeople == 1) return new Info(0, List.of());
 
-        Info nextRoundResult = solve(round + 1, killIndex, total);
+        Info nextRoundResult = solve(round + 1, killIndex, TOTAL);
         int indexOfThisRoundKilled = killIndex[round % killIndex.length] % nPeople;
 
         int survivorIndex = indexShift(nextRoundResult.survivorIndex, +indexOfThisRoundKilled + 1, nPeople);

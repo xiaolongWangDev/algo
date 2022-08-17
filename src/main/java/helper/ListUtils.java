@@ -43,6 +43,16 @@ public class ListUtils {
         return res;
     }
 
+    public static int lenLoop(ListNode head) {
+        int res = 1;
+        ListNode cur = head.next;
+        while (cur != head) {
+            cur = cur.next;
+            res++;
+        }
+        return res;
+    }
+
     public static int len(DListNode head) {
         int res = 0;
         while (head != null) {
