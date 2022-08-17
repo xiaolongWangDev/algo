@@ -69,6 +69,28 @@ public class Palindrome_old {
         return result;
     }
 
+    public static Node reverse(Node head) {
+        Node current = head;
+        Node prev = null;
+        while (current != null) {
+            Node temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
+        }
+
+        return prev;
+    }
+
+    public static int length(Node head) {
+        Node current = head;
+        int length = 0;
+        while (current != null) {
+            current = current.next;
+            length++;
+        }
+        return length;
+    }
     public static void main(String[] args) {
         Node testData = generateTestData(new int[]{1, 2, 3, 4, 5});
         Palindrome_old algo = new Palindrome_old();

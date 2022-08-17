@@ -9,13 +9,6 @@ public class LinkedListUtils {
         public Node next;
     }
 
-    public static class RandNode {
-        String name;
-        int value;
-        RandNode next;
-        RandNode rand;
-    }
-
     public static void print(Node head) {
         Node current = head;
         while (current != null) {
@@ -37,16 +30,6 @@ public class LinkedListUtils {
         }
     }
 
-    public static void printRand(RandNode head) {
-        RandNode current = head;
-        while (current != null) {
-            System.out.printf("(v: %d, r: %s)", current.value, current.rand == null ? null : current.rand.name);
-            System.out.print(" ");
-            current = current.next;
-        }
-        System.out.println();
-    }
-
     public static Node findMedian(Node head) {
         Node fast = head;
         Node slow = head;
@@ -58,51 +41,6 @@ public class LinkedListUtils {
         }
 
         return slow;
-    }
-
-    public static Node reverse(Node head) {
-        Node current = head;
-        Node prev = null;
-        while (current != null) {
-            Node temp = current.next;
-            current.next = prev;
-            prev = current;
-            current = temp;
-        }
-
-        return prev;
-    }
-
-    public static int length(Node head) {
-        Node current = head;
-        int length = 0;
-        while (current != null) {
-            current = current.next;
-            length++;
-        }
-        return length;
-    }
-
-    public static Node copyTestData(Node head) {
-
-        Node resultHead = null;
-        Node resultPrev = null;
-        Node current = head;
-        while (current != null) {
-            Node newNode = new Node();
-            newNode.value = current.value;
-            if (resultPrev != null) {
-                resultPrev.next = newNode;
-            }
-
-            if (resultHead == null) {
-                resultHead = newNode;
-            }
-            current = current.next;
-            resultPrev = newNode;
-        }
-
-        return resultHead;
     }
 
     public static Node generateTestData(int[] elements) {
@@ -131,11 +69,6 @@ public class LinkedListUtils {
     public static List<Node> generateTestDataWithLoop(int[] input, boolean fullLoop) {
         Node head = generateTestData(input);
         return createLoop(head, input.length, fullLoop);
-    }
-
-    public static List<Node> generateTestDataWithLoop(int size, int min, int max) {
-        Node head = generateTestData(size, min, max);
-        return createLoop(head, size, false);
     }
 
     private static List<Node> createLoop(Node head, int size, boolean fullLoop) {
