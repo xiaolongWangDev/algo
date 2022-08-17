@@ -20,21 +20,41 @@ public class IsPalindrome {
             cur = temp;
         }
 
+        cur = prev;
+        boolean result = true;
+
         for (int i = 0; i < len / 2; i++) {
-            if (head.val != prev.val) {
-                return false;
+            if (head.val != cur.val) {
+                result = false;
+                break;
             }
             head = head.next;
-            prev = prev.next;
+            cur = cur.next;
         }
 
-        return true;
+        // recover the list
+        cur = prev;
+        prev = null;
+        while(cur != null) {
+            ListNode temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(solve(ListUtils.create(new int[]{1, 2, 3, 4, 5})));
-        System.out.println(solve(ListUtils.create(new int[]{1, 2, 2, 1})));
-        System.out.println(solve(ListUtils.create(new int[]{1, 2, 3, 2, 1})));
+        ListNode head = ListUtils.create(new int[]{1, 2, 3, 4, 5});
+        System.out.println(solve(head));
+        ListUtils.print(head);
+        head = ListUtils.create(new int[]{1, 2, 2, 1});
+        System.out.println(solve(head));
+        ListUtils.print(head);
+        head = ListUtils.create(new int[]{1, 2, 3, 2, 1});
+        System.out.println(solve(head));
+        ListUtils.print(head);
         System.out.println(solve(ListUtils.create(new int[]{1, 2, 3, 4, 2, 1})));
     }
 }
