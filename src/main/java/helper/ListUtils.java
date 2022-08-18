@@ -1,5 +1,7 @@
 package helper;
 
+import tobeorganized.linkedlist.LinkedListUtils;
+
 public class ListUtils {
     public static ListNode create(int[] vals) {
         ListNode head = null;
@@ -73,8 +75,27 @@ public class ListUtils {
     public static void printDList(DListNode head) {
         int count = 0;
         while (head != null) {
-            System.out.printf("%d: va: %2d, prev val: %2d%n", count++, head.val, head.prev == null? -1: head.prev.val);
+            System.out.printf("%d: va: %2d, prev val: %2d%n", count++, head.val, head.prev == null ? -1 : head.prev.val);
             head = head.next;
         }
+    }
+
+    public static void printFirstN(ListNode head, int n) {
+        ListNode current = head;
+        int count = 0;
+        while (current != null && count < n) {
+            System.out.printf("(v: %d, c: %s, n: %s)", current.val, current, current.next == null ? null : current.next);
+            System.out.println();
+            current = current.next;
+            count++;
+        }
+    }
+
+    public static ListNode nodeAt(ListNode head, int index) {
+        ListNode cur = head;
+        while (cur != null && index-- != 0) {
+            cur = cur.next;
+        }
+        return cur;
     }
 }

@@ -1,5 +1,9 @@
 package practice.zuosbook.chapter2;
 
+import tobeorganized.linkedlist.LinkedListUtils;
+
+import java.util.Random;
+
 import static tobeorganized.linkedlist.LinkedListUtils.*;
 
 public class Partition_old {
@@ -77,4 +81,11 @@ public class Partition_old {
         Node partitioned = algo.partition(testData, 5);
         print(partitioned);
     }
+
+    public static Node generateTestData(int size, int min, int max) {
+        Random random = new Random();
+        int[] temp = random.ints(size, min, max).toArray();
+        return LinkedListUtils.generateTestData(temp);
+    }
+
 }
