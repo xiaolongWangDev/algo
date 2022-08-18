@@ -1,7 +1,5 @@
 package helper;
 
-import tobeorganized.linkedlist.LinkedListUtils;
-
 public class ListUtils {
     public static ListNode create(int[] vals) {
         ListNode head = null;
