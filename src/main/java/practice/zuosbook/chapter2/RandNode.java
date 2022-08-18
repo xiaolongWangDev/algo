@@ -1,7 +1,5 @@
 package practice.zuosbook.chapter2;
 
-import tobeorganized.linkedlist.LinkedListUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

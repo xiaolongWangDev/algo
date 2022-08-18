@@ -1,30 +1,31 @@
 package practice.zuosbook.chapter2;
 
-import tobeorganized.linkedlist.LinkedListUtils;
+import helper.ListNode;
+import helper.ListUtils;
 
 import java.util.Random;
 
-import static tobeorganized.linkedlist.LinkedListUtils.*;
+import static helper.ListUtils.print;
 
 public class Partition_old {
 
-    public Node partition(Node head, int pivot) {
-        Node lessThanHead = null;
-        Node equalHead = null;
-        Node greaterThanHead = null;
-        Node lessThanTail = null;
-        Node equalTail = null;
-        Node greaterThanTail = null;
-        Node current = head;
+    public ListNode partition(ListNode head, int pivot) {
+        ListNode lessThanHead = null;
+        ListNode equalHead = null;
+        ListNode greaterThanHead = null;
+        ListNode lessThanTail = null;
+        ListNode equalTail = null;
+        ListNode greaterThanTail = null;
+        ListNode current = head;
         while (current != null) {
-            if (current.value < pivot) {
+            if (current.val < pivot) {
                 if (lessThanHead == null) {
                     lessThanHead = current;
                 } else {
                     lessThanTail.next = current;
                 }
                 lessThanTail = current;
-            } else if (current.value == pivot) {
+            } else if (current.val == pivot) {
                 if (equalHead == null) {
                     equalHead = current;
                 } else {
@@ -55,8 +56,8 @@ public class Partition_old {
         return concatThreeLists(lessThanHead, lessThanTail, equalHead, equalTail, greaterThanHead);
     }
 
-    private Node concatThreeLists(Node firstHead, Node firstTail, Node secondHead, Node secondTail, Node thirdHead) {
-        Node result;
+    private ListNode concatThreeLists(ListNode firstHead, ListNode firstTail, ListNode secondHead, ListNode secondTail, ListNode thirdHead) {
+        ListNode result;
         if (firstHead != null) {
             firstTail.next = secondHead == null ? thirdHead : secondHead;
             if (secondHead != null) {
@@ -75,17 +76,17 @@ public class Partition_old {
     }
 
     public static void main(String[] args) {
-        Node testData = generateTestData(300, 0, 10);
+        ListNode testData = generateTestData(300, 0, 10);
         print(testData);
         Partition_old algo = new Partition_old();
-        Node partitioned = algo.partition(testData, 5);
+        ListNode partitioned = algo.partition(testData, 5);
         print(partitioned);
     }
 
-    public static Node generateTestData(int size, int min, int max) {
+    public static ListNode generateTestData(int size, int min, int max) {
         Random random = new Random();
         int[] temp = random.ints(size, min, max).toArray();
-        return LinkedListUtils.generateTestData(temp);
+        return ListUtils.create(temp);
     }
 
 }
