@@ -1,32 +1,32 @@
 package tobeorganized.tree;
 
 
-import helper.TreeUtils;
+import helper.TreeNode;
 
 import static helper.TreeUtils.printTree;
 import static helper.TreeUtils.testData;
 
 public class Problem_LargestBstSubtree {
     private static class Info {
-        TreeUtils.TreeNode bstRoot;
+        TreeNode bstRoot;
         int bstNodeCounts;
         Integer min;
         Integer max;
 
-        public Info(TreeUtils.TreeNode bstRoot, int bstNodeCounts, int min, int max) {
+        public Info(TreeNode bstRoot, int bstNodeCounts, int min, int max) {
             this.bstRoot = bstRoot;
             this.bstNodeCounts = bstNodeCounts;
             this.min = min;
             this.max = max;
         }
 
-        public Info(TreeUtils.TreeNode bstRoot, int bstNodeCounts) {
+        public Info(TreeNode bstRoot, int bstNodeCounts) {
             this.bstRoot = bstRoot;
             this.bstNodeCounts = bstNodeCounts;
         }
     }
 
-    public Info solveConcise(TreeUtils.TreeNode node) {
+    public Info solveConcise(TreeNode node) {
         if (node == null) {
             return new Info(null, 0);
         }
@@ -52,7 +52,7 @@ public class Problem_LargestBstSubtree {
         Problem_LargestBstSubtree p = new Problem_LargestBstSubtree();
         int height = 4;
         while (true) {
-            TreeUtils.TreeNode testData = testData(0, 100, height);
+            TreeNode testData = testData(0, 100, height);
             Info result = p.solveConcise(testData);
             if (result.bstNodeCounts > 6) {
                 printTree(testData, height);

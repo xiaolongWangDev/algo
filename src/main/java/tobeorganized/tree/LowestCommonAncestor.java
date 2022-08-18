@@ -1,5 +1,7 @@
 package tobeorganized.tree;
 
+import helper.TreeNode;
+
 import static helper.TreeUtils.*;
 
 public class LowestCommonAncestor extends TreeTraversal {

@@ -1,7 +1,7 @@
 package practice.leetcode;
 
 
-import helper.TreeUtils.TreeNode;
+import helper.TreeNode;
 
 import static helper.NullSafe.nullSafeAdd;
 import static helper.NullSafe.nullSafeMinOf;

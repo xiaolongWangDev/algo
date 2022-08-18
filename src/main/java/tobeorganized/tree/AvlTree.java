@@ -1,5 +1,7 @@
 package tobeorganized.tree;
 
+import helper.TreeNode;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;

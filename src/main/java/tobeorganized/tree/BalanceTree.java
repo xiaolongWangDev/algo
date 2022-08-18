@@ -1,6 +1,6 @@
 package tobeorganized.tree;
 
-import static helper.TreeUtils.*;
+import helper.TreeNode;
 
 public abstract class BalanceTree {
     public TreeNode root;

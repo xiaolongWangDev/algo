@@ -7,21 +7,6 @@ import static java.lang.Math.max;
 
 public class TreeUtils {
 
-    public static class TreeNode {
-        public int value;
-        public TreeNode left;
-        public TreeNode right;
-        /* not a standard tree node attribute, only used for ParentAwareTree algorithm */
-        public TreeNode parent;
-        /* following fields are for balanced tree structure */
-        /* AVL */
-        public int height = -1;
-        /* SBT */
-        public int size;
-        /* RBT */
-        public int color;
-    }
-
     public static int maxHeight(TreeNode root) {
         if (root == null) return 0;
         return max(maxHeight(root.left), maxHeight(root.right)) + 1;
