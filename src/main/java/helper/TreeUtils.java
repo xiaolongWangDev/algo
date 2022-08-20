@@ -103,6 +103,10 @@ public class TreeUtils {
     }
 
     public static TreeNode testData(int min, int max, int height) {
+        return testData(min, max, height, null);
+    }
+    public static TreeNode testData(int min, int max, int height, Integer density) {
+        density = density == null ? 2 : density;
         Random random = new Random();
         int level = 1;
         List<TreeNode> parentLevelNodes = new ArrayList<>();
@@ -115,7 +119,7 @@ public class TreeUtils {
             for (int i = 0; i < parentLevelNodes.size(); i++) {
                 TreeNode parentLevelNode = parentLevelNodes.get(i);
                 // 20% chance to not add a node
-                if (random.nextInt(10) > 1) {
+                if (random.nextInt(10) >= density) {
                     TreeNode newLeft = new TreeNode();
                     newLeft.parent = parentLevelNode;
                     newLeft.value = min + random.nextInt(max - min);
@@ -125,7 +129,7 @@ public class TreeUtils {
                 }
                 // 20% chance to not add a node
                 // if no node has been added in this level and this is the last one, we will add it regardless
-                if ((i == parentLevelNodes.size() - 1 && noChildrenAdded) || random.nextInt(10) > 1) {
+                if ((i == parentLevelNodes.size() - 1 && noChildrenAdded) || random.nextInt(10) >= density) {
                     TreeNode newRight = new TreeNode();
                     newRight.parent = parentLevelNode;
                     newRight.value = min + random.nextInt(max - min);
