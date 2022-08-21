@@ -5,11 +5,9 @@ import helper.TreeNode;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static helper.TreeUtils.*;
+import static helper.TreeUtils.testData;
 
 public class TreeTraversal {
-
-    private static final Queue<Way> ALL_WAYS = new ArrayDeque<>(List.of(Way.LEFT, Way.RIGHT));
 
     // recursive fashion
     public void recursiveInOrder(TreeNode node, Consumer<TreeNode> resultCollector) {
@@ -39,90 +37,6 @@ public class TreeTraversal {
         PRE,
         POST,
         IN
-    }
-
-    // non-recursive fashion, DFS based
-    private enum Way {
-        LEFT,
-        RIGHT
-    }
-
-    private static class Context {
-        TreeNode node;
-        Queue<Way> ways;
-
-        public Context(TreeNode node, Queue<Way> ways) {
-            this.node = node;
-            this.ways = ways;
-        }
-    }
-
-    public void backtrackBased(TreeNode root, Consumer<TreeNode> resultCollector, IterationOrder order) {
-        TreeNode cur = root;
-        Queue<Way> ways = new ArrayDeque<>(ALL_WAYS);
-        Stack<Context> contextStack = new Stack<>();
-        while (true) {
-            Way way = null;
-
-            // determine which way to go in depth next
-            while (true) {
-                // pre-order: run business logic before any of my children's is run
-                if (order == IterationOrder.PRE && ways.size() == 2) {
-                    resultCollector.accept(cur);
-                }
-                // in-order: run business logic before running the last child's
-                if (order == IterationOrder.IN && ways.size() == 1) {
-                    resultCollector.accept(cur);
-                }
-                // this does 2 things: 1, run business logic if post-order is required. 2. break out of the loop
-                if (ways.size() == 0) {
-                    // post-order: run business logic after running all children's
-                    if (order == IterationOrder.POST) {
-                        resultCollector.accept(cur);
-                    }
-                    break;
-                }
-
-                Way poppedWay = ways.poll();
-                // only use the way when it's valid
-                if (poppedWay == Way.LEFT && cur.left != null) {
-                    way = poppedWay;
-                    break;
-                }
-
-                if (poppedWay == Way.RIGHT && cur.right != null) {
-                    way = poppedWay;
-                    break;
-                }
-            }
-
-            // when there's no way going "down", we backtrack
-            if (way == null) {
-                // no history to back track to, we finished!
-                if (contextStack.isEmpty()) {
-                    break;
-                } else {
-                    // manually context switch to the last in history (stack)
-                    Context popped = contextStack.pop();
-                    cur = popped.node;
-                    ways = popped.ways;
-                }
-            } else {
-                // push current step's context to the stack so that we can backtrack later
-                contextStack.push(new Context(cur, new ArrayDeque<>(ways)));
-
-                // next updating cur and ways
-                //
-                // "walk" the selected way
-                if (way == Way.LEFT) {
-                    cur = cur.left;
-                } else {
-                    cur = cur.right;
-                }
-                // refresh the ways, so the new step will start will all available ways
-                ways = new ArrayDeque<>(ALL_WAYS);
-            }
-        }
     }
 
     public void shortPreOrder(TreeNode root, Consumer<TreeNode> resultCollector) {
@@ -337,38 +251,26 @@ public class TreeTraversal {
         List<TreeNode> inOrder = new ArrayList<>();
         treeTraversal.recursiveInOrder(testDataRoot, inOrder::add);
 //        printOrder(inOrder);
-        List<TreeNode> inOrder2 = new ArrayList<>();
-        treeTraversal.backtrackBased(testDataRoot, inOrder2::add, IterationOrder.IN);
-//        printOrder(inOrder2);
         List<TreeNode> inOrder3 = new ArrayList<>();
         treeTraversal.shortInOrder(testDataRoot, inOrder3::add);
 //        printOrder(inOrder3);
-        compareList(inOrder, inOrder2);
         compareList(inOrder, inOrder3);
 
         List<TreeNode> preOrder = new ArrayList<>();
         treeTraversal.recursivePreOrder(testDataRoot, preOrder::add);
 //        printOrder(preOrder);
-        List<TreeNode> preOrder2 = new ArrayList<>();
-        treeTraversal.backtrackBased(testDataRoot, preOrder2::add, IterationOrder.PRE);
-//        printOrder(preOrder2);
         List<TreeNode> preOrder3 = new ArrayList<>();
         treeTraversal.shortPreOrder(testDataRoot, preOrder3::add);
 //        printOrder(preOrder3);
-        compareList(preOrder, preOrder2);
         compareList(preOrder, preOrder3);
 
 
         List<TreeNode> postOrder = new ArrayList<>();
         treeTraversal.recursivePostOrder(testDataRoot, postOrder::add);
 //        printOrder(postOrder);
-        List<TreeNode> postOrder2 = new ArrayList<>();
-        treeTraversal.backtrackBased(testDataRoot, postOrder2::add, IterationOrder.POST);
-//        printOrder(postOrder2);
         List<TreeNode> postOrder3 = new ArrayList<>();
         treeTraversal.shortPostOrder(testDataRoot, postOrder3::add);
 //        printOrder(postOrder3);
-        compareList(postOrder, postOrder2);
         compareList(postOrder, postOrder3);
 
         List<TreeNode> breadthFirstOrder = new ArrayList<>();
