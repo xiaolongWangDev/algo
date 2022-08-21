@@ -12,12 +12,14 @@ public class TreeEdge2 {
     public static void solve(TreeNode root, List<TreeNode> result) {
         TreeNode cur = root;
 
+        // get the left edge
         LinkedHashSet<TreeNode> leftNodes = new LinkedHashSet<>();
         while (cur != null) {
             leftNodes.add(cur);
             cur = cur.left != null ? cur.left : cur.right;
         }
 
+        // get the right edge
         Stack<TreeNode> rightNodes = new Stack<>();
         cur = root;
         while (cur != null) {
@@ -31,6 +33,7 @@ public class TreeEdge2 {
         coveredNodes.addAll(leftNodes);
         coveredNodes.addAll(rightNodes);
 
+        // get middle leaf nodes
         List<TreeNode> leafNodes = new ArrayList<>();
         BacktrackBasedTreeTraversal.traverse(BacktrackBasedTreeTraversal.Order.IN, root, (node) -> {
             if (!coveredNodes.contains(node) && node.left == null && node.right == null) {
