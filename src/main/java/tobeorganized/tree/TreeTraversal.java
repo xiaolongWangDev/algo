@@ -1,6 +1,7 @@
 package tobeorganized.tree;
 
 import helper.TreeNode;
+import helper.TreeUtils;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -229,21 +230,21 @@ public class TreeTraversal {
 //        printOrder(result);
         List<TreeNode> expected = new ArrayList<>();
         treeTraversal.shortPreOrder(testDataRoot, expected::add);
-        compareList(expected, result);
+        TreeUtils.compareList(expected, result);
 
         result.clear();
         expected.clear();
         treeTraversal.morris(testDataRoot, result::add, IterationOrder.IN);
 //        printOrder(result);
         treeTraversal.shortInOrder(testDataRoot, expected::add);
-        compareList(expected, result);
+        TreeUtils.compareList(expected, result);
 
         result.clear();
         expected.clear();
         treeTraversal.morris(testDataRoot, result::add, IterationOrder.POST);
 //        printOrder(result);
         treeTraversal.shortPostOrder(testDataRoot, expected::add);
-        compareList(expected, result);
+        TreeUtils.compareList(expected, result);
 
     }
 
@@ -254,7 +255,7 @@ public class TreeTraversal {
         List<TreeNode> inOrder3 = new ArrayList<>();
         treeTraversal.shortInOrder(testDataRoot, inOrder3::add);
 //        printOrder(inOrder3);
-        compareList(inOrder, inOrder3);
+        TreeUtils.compareList(inOrder, inOrder3);
 
         List<TreeNode> preOrder = new ArrayList<>();
         treeTraversal.recursivePreOrder(testDataRoot, preOrder::add);
@@ -262,7 +263,7 @@ public class TreeTraversal {
         List<TreeNode> preOrder3 = new ArrayList<>();
         treeTraversal.shortPreOrder(testDataRoot, preOrder3::add);
 //        printOrder(preOrder3);
-        compareList(preOrder, preOrder3);
+        TreeUtils.compareList(preOrder, preOrder3);
 
 
         List<TreeNode> postOrder = new ArrayList<>();
@@ -271,22 +272,11 @@ public class TreeTraversal {
         List<TreeNode> postOrder3 = new ArrayList<>();
         treeTraversal.shortPostOrder(testDataRoot, postOrder3::add);
 //        printOrder(postOrder3);
-        compareList(postOrder, postOrder3);
+        TreeUtils.compareList(postOrder, postOrder3);
 
         List<TreeNode> breadthFirstOrder = new ArrayList<>();
         treeTraversal.breadthFirst(testDataRoot, breadthFirstOrder::add);
 //        printOrder(breadthFirstOrder);
-    }
-
-    private static void compareList(List<TreeNode> target, List<TreeNode> real) {
-        if (target.size() != real.size()) {
-            throw new RuntimeException("Not the same size");
-        }
-        for (int i = 0; i < target.size(); i++) {
-            if (target.get(i) != real.get(i)) {
-                throw new RuntimeException(String.format("difference found at index %d. target: %d, real: %d", i, target.get(i).value, real.get(i).value));
-            }
-        }
     }
 
     private static void printOrder(List<TreeNode> nodes) {

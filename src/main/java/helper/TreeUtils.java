@@ -144,4 +144,15 @@ public class TreeUtils {
         }
         return root;
     }
+
+    public static void compareList(List<TreeNode> target, List<TreeNode> real) {
+        if (target.size() != real.size()) {
+            throw new RuntimeException("Not the same size");
+        }
+        for (int i = 0; i < target.size(); i++) {
+            if (target.get(i) != real.get(i)) {
+                throw new RuntimeException(String.format("difference found at index %d. target: %d, real: %d", i, target.get(i).value, real.get(i).value));
+            }
+        }
+    }
 }
