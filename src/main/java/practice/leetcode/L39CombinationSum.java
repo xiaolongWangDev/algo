@@ -63,7 +63,7 @@ public class L39CombinationSum {
                     dp[j] = new Info();
                 }
 
-                if(j == target) {
+                if (j == target) {
                     if (dp[target].good) result.addAll(dp[j].newList);
                 }
             }
@@ -72,8 +72,41 @@ public class L39CombinationSum {
         return result;
     }
 
+    public static List<List<Integer>> combinationSumBacktrack(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        combinationSumBacktrackRec(0, 0, new ArrayList<>(), result, target, candidates);
+        return result;
+    }
+
+    public static void combinationSumBacktrackRec(int i, int sum, List<Integer> cumulated, List<List<Integer>> result, int TARGET, int[] CANDIDATES) {
+        if (sum == TARGET) {
+            result.add(List.copyOf(cumulated));
+            return;
+        }
+
+        if (i == CANDIDATES.length) {
+            return;
+        }
+
+        int newSum = sum;
+        int added = 0;
+        while (newSum <= TARGET) {
+            combinationSumBacktrackRec(i + 1, newSum, cumulated, result, TARGET, CANDIDATES);
+            newSum += CANDIDATES[i];
+            cumulated.add(CANDIDATES[i]);
+            added++;
+        }
+
+        // remove elements added in this rec
+        for (int j = added; j > 0; j--) {
+            cumulated.remove(cumulated.size() - 1);
+        }
+    }
+
     public static void main(String[] args) {
 //        System.out.println(combinationSum(new int[]{2, 3, 6, 7}, 7));
-        System.out.println(combinationSum(new int[]{1,2}, 1));
+//        System.out.println(combinationSum(new int[]{1, 2}, 1));
+        System.out.println(combinationSumBacktrack(new int[]{2, 3, 6, 7}, 7));
+        System.out.println(combinationSumBacktrack(new int[]{1, 2}, 1));
     }
 }
