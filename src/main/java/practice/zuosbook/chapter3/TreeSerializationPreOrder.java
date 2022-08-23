@@ -6,7 +6,7 @@ import helper.TreeUtils;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class TreeSerialization {
+public class TreeSerializationPreOrder {
     public static String serialize(TreeNode root) {
         if (root == null) {
             return "x";
