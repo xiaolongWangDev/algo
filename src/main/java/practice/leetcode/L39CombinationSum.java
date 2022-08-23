@@ -2,6 +2,7 @@ package practice.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,11 +75,11 @@ public class L39CombinationSum {
 
     public static List<List<Integer>> combinationSumBacktrack(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        combinationSumBacktrackRec(0, 0, new ArrayList<>(), result, target, candidates);
+        combinationSumBacktrackRec(0, 0, new LinkedList<>(), result, target, candidates);
         return result;
     }
 
-    public static void combinationSumBacktrackRec(int i, int sum, List<Integer> cumulated, List<List<Integer>> result, int TARGET, int[] CANDIDATES) {
+    public static void combinationSumBacktrackRec(int i, int sum, LinkedList<Integer> cumulated, List<List<Integer>> result, int TARGET, int[] CANDIDATES) {
         if (sum == TARGET) {
             result.add(List.copyOf(cumulated));
             return;
@@ -93,13 +94,13 @@ public class L39CombinationSum {
         while (newSum <= TARGET) {
             combinationSumBacktrackRec(i + 1, newSum, cumulated, result, TARGET, CANDIDATES);
             newSum += CANDIDATES[i];
-            cumulated.add(CANDIDATES[i]);
+            cumulated.addLast(CANDIDATES[i]);
             added++;
         }
 
         // remove elements added in this rec
         for (int j = added; j > 0; j--) {
-            cumulated.remove(cumulated.size() - 1);
+            cumulated.pollLast();
         }
     }
 
