@@ -58,7 +58,8 @@ public class TreeTraversalStack {
 
     public static void postOrderSingleStack(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode justFinished = root;
+        TreeNode justFinished = new TreeNode();
+        // we cannot use a null here because it'll take the left tree not added when the right tree is empty in the beginning
         stack.push(root);
         while (!stack.isEmpty()) {
             var cur = stack.peek();
