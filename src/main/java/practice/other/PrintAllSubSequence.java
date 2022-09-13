@@ -27,7 +27,7 @@ public class PrintAllSubSequence {
     }
 
     public static void main(String[] args) {
-        solve("a".toCharArray(), 0, new StringBuilder());
+        solve("abc".toCharArray(), 0, new StringBuilder());
         System.out.println(count);
     }
 }
