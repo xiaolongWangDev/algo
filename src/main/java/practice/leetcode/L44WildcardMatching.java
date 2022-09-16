@@ -45,8 +45,40 @@ public class L44WildcardMatching {
         return dp[s.length()];
     }
 
+    public static boolean isMatchGreedy(String s, String p) {
+        int i = 0;
+        int j = 0;
+        int previousStarIndex = -1;
+        int previousStarMatchedEndSIndex = -1;
+        while (i != s.length()) {
+            if (j < p.length() && (p.charAt(j) == '?' || s.charAt(i) == p.charAt(j)) /* if s contains star character, we need to exclude start here */) {
+                i++;
+                j++;
+            } else if (j < p.length() && p.charAt(j) == '*') {
+                previousStarIndex = j;
+                previousStarMatchedEndSIndex = i;
+                j++;
+            } else if (previousStarIndex != -1) {
+                // increase the range the * is cancelling
+                previousStarMatchedEndSIndex++;
+                // pull i back to the first index after that range
+                i = previousStarMatchedEndSIndex;
+                // pull j back to right after *
+                j = previousStarIndex + 1;
+            } else {
+                return false;
+            }
+        }
+        while (j < p.length()) {
+            if (p.charAt(j) != '*') return false;
+            j++;
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
-        isMatch("dcba", "?*a");
+        System.out.println(isMatchGreedy("dcba", "????**?"));
     }
 }
 
