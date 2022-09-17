@@ -17,6 +17,22 @@ public class ReservoirSampling {
         return result;
     }
 
+    public static int sampleOneNaive(int n) {
+        int result = 1;
+        var r = Math.random();
+        for (int i = 1; i < n; i++) {
+            if (r <= ((double) i) / n) return i;
+        }
+        return n;
+    }
+
+    public static int[] sampleKNaive(int n, int k) {
+        int[] res = new int[k];
+        for(int i = 0; i<k; i++) {
+            res[i] = sampleOneNaive(n);
+        }
+        return res;
+    }
     public static int[] sampleK(int n, int k) {
         int[] results = new int[k];
         Random random = new Random();
@@ -37,7 +53,7 @@ public class ReservoirSampling {
     public static void main(String[] args) {
         Map<Integer, Integer> counts = new HashMap<>();
         for (int i = 0; i < 1000; i++) {
-            int sample = sampleOne(5);
+            int sample = sampleOneNaive(5);
             counts.putIfAbsent(sample, 0);
             counts.put(sample, counts.get(sample) + 1);
         }
@@ -46,10 +62,9 @@ public class ReservoirSampling {
         //
         counts.clear();
         for (int i = 0; i < 1000; i++) {
-            int[] samples = sampleK(10, 3);
+            int[] samples = sampleKNaive(10, 4);
             for (int sample : samples) {
-                counts.putIfAbsent(sample, 0);
-                counts.put(sample, counts.get(sample) + 1);
+                counts.put(sample, counts.getOrDefault(sample, 0) + 1);
             }
         }
         System.out.println(counts);
