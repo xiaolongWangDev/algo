@@ -1,7 +1,5 @@
 package practice.leetcode;
 
-import java.util.Arrays;
-
 public class L1770MaximumScoreFromPerformingMultiplicationOperations {
     // num        [1,2,3]
     // multiplier [3,2,1]
