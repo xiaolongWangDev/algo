@@ -34,7 +34,7 @@ public class L42TrappingRainWater {
         int sum = 0;
         for (int i = 0; i < height.length; i++) {
             int currentHeight = height[i];
-            while (!minTopStack.isEmpty() && height[minTopStack.peek()] <= currentHeight) {
+            while (!minTopStack.isEmpty() && height[minTopStack.peek()] < currentHeight) {
                 int bottomHeightIndex = minTopStack.pop();
                 if (minTopStack.isEmpty()) break;
                 Integer letIndex = minTopStack.peek();
@@ -44,6 +44,26 @@ public class L42TrappingRainWater {
                 sum += water;
             }
             minTopStack.push(i);
+        }
+        return sum;
+    }
+
+    public static int trapArrayedStack(int[] height) {
+        int[] minTopStack = new int[height.length];
+        int stackTop = -1;
+        int sum = 0;
+
+        for (int i = 0; i < height.length; i++) {
+            while (stackTop != -1 && height[minTopStack[stackTop]] < height[i]) {
+                int poppedIndex = minTopStack[stackTop--];
+                int poppedHeight = height[poppedIndex];
+                if (stackTop == -1) continue;
+
+                int leftIndex = minTopStack[stackTop];
+
+                sum += (i - leftIndex - 1) * (Math.min(height[i], height[leftIndex]) - poppedHeight);
+            }
+            minTopStack[++stackTop] = i;
         }
         return sum;
     }
@@ -83,10 +103,11 @@ public class L42TrappingRainWater {
     }
 
     public static void main(String[] args) {
-        System.out.println(trapPreProcess(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
-        System.out.println(trapMonotonicStack(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+//        System.out.println(trapPreProcess(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+//        System.out.println(trapMonotonicStack(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+        System.out.println(trapArrayedStack(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
 //        System.out.println(trap2Pointers(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
-        System.out.println(trap2Pointers(new int[]{4, 1, 2, 3}));
+//        System.out.println(trap2Pointers(new int[]{4, 1, 2, 3}));
     }
     //
 
