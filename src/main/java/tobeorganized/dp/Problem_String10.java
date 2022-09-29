@@ -1,5 +1,7 @@
 package tobeorganized.dp;
 
+import algorithm.dp.MatrixOptimization;
+
 public class Problem_String10 {
     // find all valid string(made of 1 and 0) when the length is N and there's always a 1 left side of any 0
     // f(1) = 1; 1

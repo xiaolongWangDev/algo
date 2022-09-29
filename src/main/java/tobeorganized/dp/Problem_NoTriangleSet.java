@@ -1,5 +1,7 @@
 package tobeorganized.dp;
 
+import algorithm.dp.MatrixOptimization;
+
 import java.util.ArrayList;
 import java.util.List;
 

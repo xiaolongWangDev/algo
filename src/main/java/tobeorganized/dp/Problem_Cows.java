@@ -1,5 +1,7 @@
 package tobeorganized.dp;
 
+import algorithm.dp.MatrixOptimization;
+
 public class Problem_Cows {
     // start with 1 cow,
     // every year the existing cows give birth to new cows

@@ -1,4 +1,4 @@
-package tobeorganized.dp;
+package algorithm.dp;
 
 public class MatrixOptimization {
     public int f(int n, int[] initVector, int[][] transferMatrix) {
@@ -6,7 +6,7 @@ public class MatrixOptimization {
             return initVector[initVector.length - n];
         }
 
-        // [fk, ..., f2, f1] = [fk + 1, ..., f2] * transferMatrix
+        // [fk+1, ..., f2] = [fk, ..., f1] * transferMatrix
         // [fn, ..., f(n - k + 2), f(n - k + 1)] = [fk, ..., f1] * transferMatrix^(n - k)
         int[][] cumulatedMatrix = selfMultiply(transferMatrix, n - initVector.length);
         int sum = 0;
