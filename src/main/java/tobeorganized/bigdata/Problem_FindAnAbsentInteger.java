@@ -4,38 +4,6 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class Problem_FindAnAbsentInteger {
-    public Long findUsingLeastSpace(Supplier<Iterator<Long>> source, long rBound) {
-        int level = 0;
-        long lBound = 0;
-        while (rBound > 1L << level + 1) {
-            level++;
-        }
-        while (level >= 0) {
-            Iterator<Long> iterator = source.get();
-            int geCount = 0;
-            int ltCount = 0;
-            long pivot = lBound + (1L << level);
-            while (iterator.hasNext()) {
-                Long num = iterator.next();
-                if (num >= lBound && num <= rBound) {
-                    if (num >= pivot) {
-                        geCount++;
-                    } else {
-                        ltCount++;
-                    }
-                }
-            }
-            if (ltCount == 0) return lBound;
-            if (geCount == 0) return pivot;
-            if (ltCount > geCount) {
-                lBound = pivot;
-            } else {
-                rBound = pivot - 1;
-            }
-            level = level - 1;
-        }
-        return null;
-    }
 
     public Long findUsingBuckets(Supplier<Iterator<Long>> source, long rBound) {
 
@@ -92,7 +60,6 @@ public class Problem_FindAnAbsentInteger {
         int toRemove = new Random().nextInt((int) rBound + 1);
         data.remove(toRemove);
         System.out.println(toRemove);
-//        System.out.println(algo.findUsingLeastSpace(data::iterator, rBound));
         System.out.println(algo.findUsingBuckets(data::iterator, rBound));
     }
 }
