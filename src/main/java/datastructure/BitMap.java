@@ -11,6 +11,10 @@ public class BitMap {
         this.map = new int[(int) Math.ceil(len / 32.0)];
     }
 
+    public int getLen() {
+        return len;
+    }
+
     public void set(int bit) {
         int indexInMap = bit / 32;
         int bitInInteger = bit % 32;
