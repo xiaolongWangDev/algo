@@ -20,14 +20,14 @@ public class L1114PrintInOrder {
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
-        firstLatch.wait();
+        firstLatch.await();
         // printSecond.run() outputs "second". Do not change or remove this line.
         printSecond.run();
         secondLatch.countDown();
     }
 
     public void third(Runnable printThird) throws InterruptedException {
-        secondLatch.wait();
+        secondLatch.await();
         // printThird.run() outputs "third". Do not change or remove this line.
         printThird.run();
     }
