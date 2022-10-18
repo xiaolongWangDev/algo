@@ -30,6 +30,25 @@ public class L300LongestIncreasingSubsequence {
         return len;
     }
 
+
+    /*
+    for the list 10,1 ,7 ,3, 6, 4
+    constructs the following arrays
+    1: [1]
+    2: [1,3]
+    3: [1,3,4]
+    It keeps the increasing subsequence that's closest to the current index.
+
+    Whenever we are at an index, we do a binary search in the above structure, by comparing the last element in
+    each list with current value. The goal is to find one list would accept current value at the end and still be
+    increasing.
+
+    the binary search here is zoned binary search. It determines the boundary of valid and invalid lists.
+
+    the monotonic property is when lisOfLenM.get(lisOfLenM.size() - 1) < num, the shorter lists' end elements would all
+    be smaller than num. This is guaranteed by how we added values
+
+     */
     public static List<Integer> lis(int[] nums) {
         List<List<Integer>> seqEnds = new ArrayList<>();
         for (int num : nums) {
